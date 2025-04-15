@@ -107,6 +107,22 @@ window.onload = function() {
 <section class="whatsnew"><div id="prenew"></div>
 	What's new in <a href="whatsnew/">Galamo 1.0</a>
 	<p class="version" id="core-package-version"></p>
+
+	<script>
+	  const packageName = "galamo";
+	
+	  fetch(`https://pypi.org/pypi/${packageName}/json`)
+		.then(response => response.json())
+		.then(data => {
+		  const version = data.info.version;
+		  document.getElementById("core-package-version").innerText = `Latest version: v${version}`;
+		})
+		.catch(error => {
+		  console.error("Error fetching version:", error);
+		  document.getElementById("core-package-version").innerText = "Failed to load version.";
+		});
+	</script>
+	
 </section>
 <section class="whatsnext"> 
 		Galamo is still in its early stages, and we are continuously working to enhance its accuracy and performance. <br>Check out what's new in version 0.0.4 at <a href="https://www.galamo.org/new">www.galamo.org/new</a>.
@@ -119,65 +135,81 @@ window.onload = function() {
     <p>There are a number of ways of installing the latest release of the Galamo core package. If you normally use 
         <code>pip</code> to install Python packages, you can do:</p>
     
-    <div class="code-container">
-        <button class="copy-btn" onclick="copyToClipboard()" title="Copy to clipboard">Copy</button>
-        <pre><code id="install-command">pip install galamo --upgrade</code></pre>
-    </div>
-    
-    <p>Please see the <a href="docs-sub/en/latest/install.html"><code>galamo</code> installation guide</a> for important details. This guide covers creating a Python environment, installing with <code>pip</code>, building from source, requirements, and testing.</p>
-
-	<script>
-		function copyToClipboard() {
-		  const text = document.getElementById("install-command").innerText;
-		  navigator.clipboard.writeText(text).then(() => {
-			alert("Copied to clipboard!");
-		  }).catch(err => {
-			alert("Failed to copy text: " + err);
-		  });
-		}
-	  </script>
-	  
-
-    <style>
-        .code-container {
-            position: relative;
-            display: inline-block;
-            background: #f5f5f5;
-            padding: 4px;
-			width: 500px;
-            border-radius: 5px;
-            font-family: monospace
-        }
-
-        .copy-btn {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            padding: 4px;
-            font-size: 12px;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            color: white;
-            background-image: linear-gradient(to bottom, #2ea8ff 0%, #0b5f9c 89%);
-            transition: background 0.2s, transform 0.1s ease-in-out;
-        }
-
-        .copy-btn:hover {
-            background-image: linear-gradient(to bottom, #3cb0ff 0%, #0b5f9c 100%);
-        }
-
-        .copy-btn:active {
-            transform: scale(0.95);
-        }
-		pre {
-  margin: 0;
-  font-size: 14px;
-  white-space: pre-wrap; /* wraps code if it's long */
-  word-break: break-word;
-  flex: 1;
-}
-    </style>
+		<div class="code-container">
+			<button class="copy-btn" onclick="copyToClipboard()" title="Copy to clipboard">Copy</button>
+			<pre><code id="install-command">pip install galamo --upgrade</code></pre>
+		  </div>
+		  
+		  <p>Please see the <a href="docs-sub/en/latest/install.html"><code>galamo</code> installation guide</a> for important details. This guide covers creating a Python environment, installing with <code>pip</code>, building from source, requirements, and testing.</p>
+		  
+		  <script>
+			function copyToClipboard() {
+			  const text = document.getElementById("install-command").innerText;
+			  navigator.clipboard.writeText(text).then(() => {
+				alert("Copied to clipboard!");
+			  }).catch(err => {
+				alert("Failed to copy text: " + err);
+			  });
+			}
+		  </script>
+		  
+		  <style>
+			.code-container {
+			  position: relative;
+			  display: flex;
+			  align-items: center;
+			  background: #f5f5f5;
+			  padding: 10px;
+			  border-radius: 8px;
+			  font-family: monospace;
+			  overflow-x: auto;
+			  max-width: 100%;
+			  box-sizing: border-box;
+			}
+		  
+			.copy-btn {
+			  position: absolute;
+			  top: 8px;
+			  right: 8px;
+			  padding: 6px 10px;
+			  font-size: 12px;
+			  border: none;
+			  cursor: pointer;
+			  border-radius: 8px;
+			  color: white;
+			  background-image: linear-gradient(to bottom, #2ea8ff 0%, #0b5f9c 89%);
+			  transition: background 0.2s, transform 0.1s ease-in-out;
+			  z-index: 1;
+			}
+		  
+			.copy-btn:hover {
+			  background-image: linear-gradient(to bottom, #3cb0ff 0%, #0b5f9c 100%);
+			}
+		  
+			.copy-btn:active {
+			  transform: scale(0.95);
+			}
+		  
+			pre {
+			  margin: 0;
+			  font-size: 14px;
+			  white-space: pre-wrap;
+			  word-break: break-word;
+			  flex: 1;
+			  padding-right: 50px; /* prevents overlap with button */
+			}
+		  
+			@media (max-width: 600px) {
+			  .copy-btn {
+				font-size: 11px;
+				padding: 4px 8px;
+			  }
+			  pre {
+				font-size: 13px;
+			  }
+			}
+		  </style>
+		  
 </section>
 
 	<section class="whatsnext">
@@ -235,5 +267,7 @@ window.onload = function() {
 	    <p>The Galamo project is committed to fostering an inclusive community. The community of participants in open source Astronomy projects is made up of members from around the globe with a diverse set of skills, personalities, and experiences. It is through these differences that our community experiences success and continued growth. <a href="code_of_conduct.html">Learn more</a></p>
 	</div>
 	<img width="180" style="margin-right: 15px;" src="images/Numfocus_stamp.png" class="footer-stamp">
+
 </div>
+<center><small style="color: gray; font-size: 12px; margin-top: 100px;">&copy; 2025 Galamo</small></center>
 </html>
