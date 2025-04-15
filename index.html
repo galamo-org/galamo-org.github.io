@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="description" content="Galamo. A Community Python Library for Astronomy." />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="images/galamo_main.svg">
+<link rel="icon" href="images/o.svg" type="image/svg+xml">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css' />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.sidr.light.css" />
@@ -30,12 +30,23 @@ window.onload = function() {
     dogeImg.onload=function() {
       dogeContainer.appendChild(dogeImg);
     }
-    dogeImg.src = 'images/Galamo_doge.png';
+    dogeImg.src = 'images/galamo_main.svg.';
     dogeImg.alt = 'wow so open very python';
   }
 };
 </script>
 </head>
+<style>body::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .404); /* Black with 50% opacity */
+	z-index: -1; /* Make sure it's behind all content */
+  }
+  </style>
 <body id="index">
 <div id="wrapper">
 	<nav>
@@ -94,7 +105,7 @@ window.onload = function() {
         <p class="acknowledge">Please remember to <a href="acknowledging.html">acknowledge and cite</a> the use of Galamo!</p>
     </section>
 <section class="whatsnew"><div id="prenew"></div>
-	What's new in <a href="docs-sub/en/stable/whatsnew/7.0.html">Galamo 1.0</a>
+	What's new in <a href="whatsnew/">Galamo 1.0</a>
 	<p class="version" id="core-package-version"></p>
 </section>
 <section class="whatsnext"> 
@@ -113,20 +124,19 @@ window.onload = function() {
         <pre><code id="install-command">pip install galamo --upgrade</code></pre>
     </div>
     
-    <p>Please see the <a href="docs-sub/en/latest/install.html"><code>galamo</code> installation guide</a> for important details. This guide covers creating a Python environment, installing with <code>pip</code> or <code>conda</code>, building from source, requirements, and testing.</p>
+    <p>Please see the <a href="docs-sub/en/latest/install.html"><code>galamo</code> installation guide</a> for important details. This guide covers creating a Python environment, installing with <code>pip</code>, building from source, requirements, and testing.</p>
 
-    <script>
-        function copyToClipboard() {
-            const command = document.getElementById("install-command").innerText;
-            navigator.clipboard.writeText(command).then(() => {
-                const button = document.querySelector(".copy-btn");
-                button.innerText = "Copied ✔";
-                setTimeout(() => {
-                    button.innerText = "Copy";
-                }, 2000);
-            });
-        }
-    </script>
+	<script>
+		function copyToClipboard() {
+		  const text = document.getElementById("install-command").innerText;
+		  navigator.clipboard.writeText(text).then(() => {
+			alert("Copied to clipboard!");
+		  }).catch(err => {
+			alert("Failed to copy text: " + err);
+		  });
+		}
+	  </script>
+	  
 
     <style>
         .code-container {
@@ -160,6 +170,13 @@ window.onload = function() {
         .copy-btn:active {
             transform: scale(0.95);
         }
+		pre {
+  margin: 0;
+  font-size: 14px;
+  white-space: pre-wrap; /* wraps code if it's long */
+  word-break: break-word;
+  flex: 1;
+}
     </style>
 </section>
 
@@ -167,8 +184,7 @@ window.onload = function() {
 		<h1 id="learn-Galamo">Learn Galamo<a class="paralink" href="#learn-Galamo" title="Permalink to this headline">¶</a></h1>
 		<p>You can explore the functionality available in Galamo by checking out the <a href="docs-sub/en/stable/generated/examples.html">Example Gallery, <a href="tutorials-sub/index.html">Tutorials</a>, and <a
 		href="docs-sub/index.html">Documentation</a>.</p>
-		<a class="button" href="docs-sub/en/stable/generated/examples/index.html" target="_blank">Example Gallery</a>
-		<a class="button" href="Galamo-tutorials.html" target="_blank">Tutorials</a>
+		<a class="button" href="galamo-tutorials.html" target="_blank">Tutorials</a>
 		<a class="button" href="docs-sub/en/stable/index.html" target="_blank">Documentation</a>
 	</section>
 	<section class="whatsnext">
@@ -188,12 +204,11 @@ window.onload = function() {
 				title="Permalink to this headline">¶</a></h1>
 		<p>If you use Galamo in your work, we would be grateful if you could include an acknowledgment in papers and/or
 	presentations. See <a href="acknowledging.html">Acknowledging & Citing Galamo</a> for details. </p>
-		<p>You can also purchase apparel and trinkets from <a href="fashion-sub/index.html">fashion.Galamo.org</a>, and
-			a portion of the profits go to support the project!</p>
 		<p> Galamo is evolving, and we are constantly working to refine its precision and performance. Your support can help us accelerate development, enhance features, and bring cutting-edge advancements to the community.
 			If you believe in our mission, consider making a donation. Every contribution, big or small, makes a difference!
 			<br>
 		</p>
+		<p><b>If you represent an astronomy institute and are interested in collaboration opportunities, please reach out to us at <a href="mailto:contact@galamo.org">contact@galamo.org</a>.</b></p>
 		<a class="button" target="_blank" href="https://www.galamo.org/donate" target="_blank">Donate to Galamo</a>
 	</section>
     
