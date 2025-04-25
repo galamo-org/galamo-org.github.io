@@ -27,18 +27,7 @@ time, mark, audio, video {
 em {
   font-style: italic;
 }
-body::after {
-    content: "Background image © ESO/Paranal Observatory"; /* Update with actual credit */
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.8); /* Light text */
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    padding: 5px 10px;
-    border-radius: 5px;
-    pointer-events: none; /* Prevents clicking */
-}
+
 
 
 /* HTML5 display-role reset for older browsers */
@@ -104,10 +93,10 @@ code {
 }
 
 body {
-	line-height: 1.25em;
-	font-size: 14px;
-	color:#ffffff;
-	font-family: 'Open Sans', sans-serif;
+    line-height: 1.25em;
+    font-size: 14px;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
     background-image: url("../images/background.jpg");
     background-repeat: repeat;
     background-position: top left;
@@ -117,6 +106,33 @@ body {
     margin: 0;
     padding: 0;
 }
+
+/* Fixed credit at the bottom */
+body::after {
+    content: "Background image © ESO/Paranal Observatory"; /* Update with actual credit */
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8); /* Light text */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 5px 10px;
+    border-radius: 5px;
+    pointer-events: none; /* Prevents clicking */
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 12px; /* Adjust font size for mobile */
+    }
+
+    body::after {
+        font-size: 10px; /* Smaller font size for mobile */
+        padding: 3px 8px; /* Adjust padding for better mobile fit */
+    }
+}
+
 
 
 
