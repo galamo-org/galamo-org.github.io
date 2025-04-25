@@ -28,7 +28,7 @@ em {
   font-style: italic;
 }
 body::after {
-    content: "Background image © ESA/HUBBLE"; /* Update with actual credit */
+    content: "Background image © ESO/Paranal Observatory"; /* Update with actual credit */
     position: fixed;
     bottom: 10px;
     right: 10px;
