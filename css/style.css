@@ -28,7 +28,7 @@ em {
   font-style: italic;
 }
 body::after {
-    content: "Background image © ESO/Paranal Observatory"; /* Update with actual credit */
+    content: "Background image © ESO/S. Gillessen et al."; /* Update with actual credit */
 
     bottom: 10px;
     right: 10px;
@@ -106,17 +106,18 @@ code {
 body {
 	line-height: 1.25em;
 	font-size: 14px;
-	color:#ffffff;
+	color: #ffffff;
 	font-family: 'Open Sans', sans-serif;
     background-image: url("../images/background.jpg");
-    background-repeat: repeat;
-    background-position: top left;
-    background-size: auto; /* Ensures the image repeats at its original size */
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; /* Fills the screen */
     
     width: 100%;
     margin: 0;
     padding: 0;
 }
+
 
 
 
