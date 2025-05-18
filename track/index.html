@@ -25,11 +25,11 @@
 <body class="bg-white min-h-screen flex items-center justify-center">
   <main class="max-w-2xl mx-auto p-8 text-center">
     <div class="neubrutalism bg-[#E8F3FF] p-8 md:p-12">
-<h1 class="text-4xl md:text-5xl font-bold mb-6">Support Galamo</h1>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Support Galamo</h1>
 
-      <h6 style="text-align: center;">An open source python package for astronomy, by physics student of Guru Nanak Dev University.</h6>
-      
+      <h6 class="text-center">An open source python package for astronomy, by physics student of Guru Nanak Dev University.</h6>
       <br>
+
       <!-- Progress Bar -->
       <div class="relative h-12 bg-white neubrutalism mb-8">
         <div 
@@ -42,13 +42,18 @@
         </div>
       </div>
 
-        <div class="neu-brutal bg-green-200 p-6 mb-8 max-w-xl mx-auto">
-            <p class="text-lg leading-relaxed">
-                We're truly grateful for every star and every bit of support. Your enthusiasm fuels our passion and helps Galamo grow in ways we never imagined. Once we hit 150 stars, we'll randomly pick one lucky person from this group who starred the repo to win a 20% discount coupon from Tim Hortons! ☕🍩 
-                <br>Thank you for being part of this journey.
-            </p>
-        </div>
+      <!-- Thank you message -->
+      <div class="neubrutalism bg-green-200 p-6 mb-8 max-w-xl mx-auto">
+        <p class="text-lg leading-relaxed">
+          We're truly grateful for every star and every bit of support. Your enthusiasm fuels our passion and helps Galamo grow in ways we never imagined.
+          <br><br>
+          Once we hit 150 stars, we'll randomly pick one lucky person from this group who starred the repo to win a 20% discount coupon from Tim Hortons! ☕🍩 
+          <br><br>
+          Thank you for being part of this journey.
+        </p>
+      </div>
 
+      <!-- GitHub Link -->
       <a href="https://github.com/galamo-org/galamo" target="_blank" 
          class="inline-block neubrutalism bg-black text-white px-6 py-3 text-lg">
         <i class="bi bi-github mr-2"></i>
@@ -56,6 +61,7 @@
       </a>
     </div>
 
+    <!-- Footer -->
     <footer class="mt-8">
       <a href="https://github.com/galamo-org/galamo" target="_blank" 
          class="text-gray-600 hover:text-black transition-colors">
@@ -70,15 +76,9 @@
     const REPO_NAME = "galamo";
     const TARGET_STARS = 150;
 
-    // Replace this token with your own GitHub personal access token
-    const TOKEN = "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"; 
-
     async function updateProgressBar() {
       try {
-        const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`, {
-          headers: { Authorization: `token ${TOKEN}` }
-        });
-
+        const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`);
         if (!res.ok) throw new Error("GitHub API error");
 
         const data = await res.json();
