@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GitHub Stars Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .neubrutalism {
+      border: 3px solid #000;
+      box-shadow: 5px 5px 0px #000;
+      transition: all 0.2s ease;
+    }
+    .neubrutalism:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0px #000;
+    }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-white min-h-screen flex items-center justify-center">
+  <main class="max-w-2xl mx-auto p-8 text-center">
+    <div class="neubrutalism bg-[#E8F3FF] p-8 md:p-12">
+<h1 class="text-4xl md:text-5xl font-bold mb-6">Support Galamo</h1>
+
+      <h6 style="text-align: center;">An open source python package for astronomy, by physics student of Guru Nanak Dev University.</h6>
+      
+      <br>
+      <!-- Progress Bar -->
+      <div class="relative h-12 bg-white neubrutalism mb-8">
+        <div 
+          id="progress-fill" 
+          class="absolute h-full bg-[#7EB6FF]" 
+          style="width: 0%; transition: width 1.5s ease-out;"
+        ></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span id="progress-text" class="font-bold text-xl">Loading stars...</span>
+        </div>
+      </div>
+
+        <div class="neu-brutal bg-green-200 p-6 mb-8 max-w-xl mx-auto">
+            <p class="text-lg leading-relaxed">
+                We're truly grateful for every star and every bit of support. Your enthusiasm fuels our passion and helps Galamo grow in ways we never imagined. Once we hit 150 stars, we'll randomly pick one lucky person from this group who starred the repo to win a 20% discount coupon from Tim Hortons! ☕🍩 
+                <br>Thank you for being part of this journey.
+            </p>
+        </div>
+
+      <a href="https://github.com/galamo-org/galamo" target="_blank" 
+         class="inline-block neubrutalism bg-black text-white px-6 py-3 text-lg">
+        <i class="bi bi-github mr-2"></i>
+        Star on GitHub
+      </a>
+    </div>
+
+    <footer class="mt-8">
+      <a href="https://github.com/galamo-org/galamo" target="_blank" 
+         class="text-gray-600 hover:text-black transition-colors">
+        <i class="bi bi-github text-3xl"></i>
+      </a>
+    </footer>
+  </main>
+
+  <!-- GitHub Stars Script -->
+  <script>
+    const REPO_OWNER = "galamo-org";
+    const REPO_NAME = "galamo";
+    const TARGET_STARS = 150;
+
+    // Replace this token with your own GitHub personal access token
+    const TOKEN = "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"; 
+
+    async function updateProgressBar() {
+      try {
+        const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`, {
+          headers: { Authorization: `token ${TOKEN}` }
+        });
+
+        if (!res.ok) throw new Error("GitHub API error");
+
+        const data = await res.json();
+        const stars = data.stargazers_count;
+        const cappedStars = Math.min(stars, TARGET_STARS);
+        const percentage = ((cappedStars / TARGET_STARS) * 100).toFixed(1);
+
+        document.getElementById("progress-fill").style.width = `${percentage}%`;
+        document.getElementById("progress-text").textContent = 
+          `${cappedStars} / ${TARGET_STARS} Stars (${percentage}%)`;
+
+      } catch (error) {
+        console.error("Error fetching star count:", error);
+        document.getElementById("progress-fill").style.width = "0%";
+        document.getElementById("progress-text").textContent = "Can't update star count right now.";
+      }
+    }
+
+    updateProgressBar();
+    setInterval(updateProgressBar, 30000); // Update every 30 seconds
+  </script>
+</body>
+</html>
