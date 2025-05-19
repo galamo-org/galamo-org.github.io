@@ -232,6 +232,7 @@
   
   <div class="section">
     <br>
+    <br>
     <h2>❤️ Early Contributors</h2>
     <p>Special thanks to these early contributors to the project!</p>
     <div class="user-table">
@@ -247,125 +248,66 @@
   </div>
 
   <hr>
-
-  <div class="section">
-    <h2>✨ Early Supporters</h2>
-    <p>Thanks to these amazing users who starred Galamo early and supported the project!</p>
-    <div class="user-table" id="supporterList"></div>
-  </div>
-<div id="supportersModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-  <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 relative shadow-lg border-4 border-black neubrutalism">
-    <button onclick="closeModal()" class="absolute top-4 right-4 text-black text-xl hover:scale-125 transition">
-      &times;
-    </button>
-    <h2 class="text-2xl font-bold mb-4">Supporters of Galamo</h2>
-    <div id="modalStargazers" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4"></div>
-  </div>
-</div>
+<!-- Early Supporters Section -->
+<section id="supportersSection" class="max-w-3xl mx-auto mt-12 p-6 neubrutalism bg-yellow-100 border-4 border-black rounded-2xl shadow-lg">
+  <h2 class="text-2xl font-bold text-center mb-6">✨ Early Supporters</h2>
+  <table id="supportersTable" class="w-full text-left border-collapse">
+    <!-- Table rows inserted dynamically -->
+  </table>
+</section>
 <script>
-  const REPO_OWNER = "galamo-org";
-  const REPO_NAME = "galamo";
-  const TARGET_STARS = 150;
+const REPO_OWNER = "galamo-org";
+const REPO_NAME = "galamo";
 
-  async function updateProgressBar() {
-    try {
-      const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`);
-      if (!res.ok) throw new Error("GitHub API error");
+async function loadSupporters() {
+  const table = document.getElementById("supportersTable");
+  table.innerHTML = "<tr><td class='py-2'>Loading supporters...</td></tr>";
 
-      const data = await res.json();
-      const stars = data.stargazers_count;
-      const cappedStars = Math.min(stars, TARGET_STARS);
-      const percentage = ((cappedStars / TARGET_STARS) * 100).toFixed(1);
+  try {
+    const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/stargazers?per_page=100`, {
+      headers: { Accept: "application/vnd.github.v3+json" }
+    });
 
-      document.getElementById("progress-fill").style.width = `${percentage}%`;
-      document.getElementById("progress-text").textContent =
-        `${cappedStars} / ${TARGET_STARS} Stars (${percentage}%)`;
+    if (!response.ok) throw new Error("GitHub API error");
 
-    } catch (error) {
-      console.error("Error fetching star count:", error);
-      document.getElementById("progress-fill").style.width = "0%";
-      document.getElementById("progress-text").textContent = "Can't update star count right now.";
-    }
-  }
+    const users = await response.json();
+    table.innerHTML = "";
 
-  async function loadModalStargazers() {
-    const container = document.getElementById("modalStargazers");
-    container.innerHTML = "<p class='col-span-full'>Loading supporters...</p>";
+    for (let i = 0; i < users.length; i += 2) {
+      const user1 = users[i];
+      const user2 = users[i + 1];
 
-    try {
-      const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/stargazers?per_page=100`, {
-        headers: { Accept: "application/vnd.github.v3+json" }
-      });
-
-      if (!response.ok) throw new Error("GitHub API error");
-
-      const users = await response.json();
-      container.innerHTML = "";
-
-      users.forEach(user => {
-        const div = document.createElement("div");
-        div.innerHTML = `
-          <a href="${user.html_url}" target="_blank" title="${user.login}">
-            <img src="${user.avatar_url}" alt="${user.login}" class="rounded-full w-16 h-16 border-2 border-black hover:scale-110 transition">
-            <p class="text-sm mt-1 truncate">${user.login}</p>
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td class="p-2 border-b border-black">
+          <a href="${user1.html_url}" target="_blank" class="font-medium hover:underline">
+            ${user1.login}
           </a>
-        `;
-        container.appendChild(div);
-      });
-
-    } catch (error) {
-      console.error("Error loading supporters:", error);
-      container.innerHTML = "<p class='text-red-500 col-span-full'>Couldn't load supporters.</p>";
+          <img src="https://img.shields.io/badge/Galamo-Early%20Contributor-purple" alt="Early Contributor Badge" class="inline ml-2">
+        </td>
+        <td class="p-2 border-b border-black">
+          ${user2 ? `
+            <a href="${user2.html_url}" target="_blank" class="font-medium hover:underline">
+              ${user2.login}
+            </a>
+            <img src="https://img.shields.io/badge/Galamo-Early%20Contributor-purple" alt="Early Contributor Badge" class="inline ml-2">
+          ` : ""}
+        </td>
+      `;
+      table.appendChild(row);
     }
-  }
 
-  function openModal() {
-    document.getElementById("supportersModal").classList.remove("hidden");
-    loadModalStargazers();
+  } catch (error) {
+    console.error("Error fetching supporters:", error);
+    table.innerHTML = "<tr><td class='text-red-500'>Failed to load supporters.</td></tr>";
   }
+}
 
-  function closeModal() {
-    document.getElementById("supportersModal").classList.add("hidden");
-  }
-
-  updateProgressBar();
-  setInterval(updateProgressBar, 30000);
+document.addEventListener("DOMContentLoaded", loadSupporters);
 </script>
 
-<script>
-    const GITHUB_TOKEN = 'EARLY_SPORT'; // <-- Replace with your actual GitHub token
 
-    async function fetchStargazers() {
-      const response = await fetch('https://api.github.com/repos/galamo-org/galamo/stargazers', {
-        headers: {
-          'Authorization': `token ${GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github+json'
-        }
-      });
-
-      if (!response.ok) {
-        document.getElementById('supporterList').innerHTML = '<p>Failed to load supporters.</p>';
-        return;
-      }
-
-      const stargazers = await response.json();
-      const container = document.getElementById('supporterList');
-
-      stargazers.forEach(user => {
-        const card = document.createElement('div');
-        card.className = 'user-card';
-
-        card.innerHTML = `
-          <a href="${user.html_url}" target="_blank">${user.login}</a>
-          <img src="https://img.shields.io/badge/Galamo-Early%20Supporter-purple" alt="Early Supporter Badge">
-        `;
-
-        container.appendChild(card);
-      });
-    }
-
-    fetchStargazers();
-  </script>
+  
   <style>
 
     .section {
