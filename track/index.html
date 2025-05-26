@@ -75,8 +75,9 @@
       <div class="neubrutalism bg-green-200 p-6 mb-8 max-w-xl mx-auto">
         <p class="text-lg leading-relaxed">
           We're truly grateful for every star and every bit of support. Your enthusiasm fuels our passion and helps Galamo grow in ways we never imagined.
-          <br>
-         
+          <br><br>
+          Now that we hit 150 stars, we'll randomly pick one lucky person from this group who starred the repo to win a 20% discount coupon from Tim Hortons! ☕🍩 
+          <br><br>
           Thank you for being part of this journey.
         </p>
       </div>
@@ -103,21 +104,11 @@
     const REPO_OWNER = "galamo-org";
     const REPO_NAME = "galamo";
     const TARGET_STARS = 150;
-    const GITHUB_TOKEN = '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'; // Replace if needed
-
     let hasCelebrated = false;
 
     async function updateProgressBar() {
       try {
-        const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`, {
-          headers: {
-            Accept: "application/vnd.github.v3+json",
-            Authorization: `token ${GITHUB_TOKEN}`
-          }
-        });
-
-        if (!res.ok) throw new Error("GitHub API error");
-
+        const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`);
         const data = await res.json();
         const stars = data.stargazers_count;
         const cappedStars = Math.min(stars, TARGET_STARS);
@@ -125,7 +116,7 @@
 
         const fill = document.getElementById("progress-fill");
         fill.classList.remove("progress-animate");
-        void fill.offsetWidth; // reflow to restart animation
+        void fill.offsetWidth; // force reflow
         fill.style.setProperty("--target-width", `${percentage}%`);
         fill.classList.add("progress-animate");
 
@@ -134,33 +125,38 @@
 
         if (stars >= TARGET_STARS && !hasCelebrated) {
           hasCelebrated = true;
-          launchCelebration();
+          launchConfetti();
         }
 
-      } catch (error) {
-        console.error("Error fetching star count:", error);
-        document.getElementById("progress-fill").style.width = "0%";
-        document.getElementById("progress-text").textContent = "Can't update star count right now.";
+      } catch (err) {
+        console.error("Could not fetch stars:", err);
+        document.getElementById("progress-text").textContent = "Error loading stars";
       }
     }
 
-    function launchCelebration() {
+    function launchConfetti() {
       confetti({
-        particleCount: 300,
-        spread: 100,
+        particleCount: 250,
+        spread: 90,
         origin: { y: 0.6 }
       });
     }
 
-    function loadModalStargazers() {
+    function openModal() {
+      document.getElementById("supportersModal").classList.remove("hidden");
+      loadSupporters();
+    }
+
+    function closeModal() {
+      document.getElementById("supportersModal").classList.add("hidden");
+    }
+
+    function loadSupporters() {
       const container = document.getElementById("modalStargazers");
       container.innerHTML = "<p class='col-span-full'>Loading supporters...</p>";
 
       fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/stargazers?per_page=100`, {
-        headers: {
-          Accept: "application/vnd.github.v3+json",
-          Authorization: `token ${GITHUB_TOKEN}`
-        }
+        headers: { Accept: "application/vnd.github.v3.star+json" }
       })
       .then(res => res.json())
       .then(users => {
@@ -168,32 +164,22 @@
         users.forEach(user => {
           const div = document.createElement("div");
           div.innerHTML = `
-            <a href="${user.html_url}" target="_blank" title="${user.login}">
-              <img src="${user.avatar_url}" alt="${user.login}" class="rounded-full w-16 h-16 border-2 border-black hover:scale-110 transition">
-              <p class="text-sm mt-1 truncate">${user.login}</p>
+            <a href="${user.user.html_url}" target="_blank" title="${user.user.login}">
+              <img src="${user.user.avatar_url}" class="w-16 h-16 rounded-full border-2 border-black hover:scale-110 transition" />
+              <p class="text-sm mt-1 truncate">${user.user.login}</p>
             </a>
           `;
           container.appendChild(div);
         });
       })
       .catch(err => {
-        console.error("Error loading supporters:", err);
-        container.innerHTML = "<p class='text-red-500 col-span-full'>Couldn't load supporters.</p>";
+        console.error("Error loading stargazers:", err);
+        container.innerHTML = "<p class='text-red-500 col-span-full'>Failed to load supporters.</p>";
       });
     }
 
-    function openModal() {
-      document.getElementById("supportersModal").classList.remove("hidden");
-      loadModalStargazers();
-    }
-
-    function closeModal() {
-      document.getElementById("supportersModal").classList.add("hidden");
-    }
-
     updateProgressBar();
-    setInterval(updateProgressBar, 30000);
+    setInterval(updateProgressBar, 60000); // update every 60 seconds
   </script>
-
 </body>
 </html>
