@@ -6,6 +6,7 @@
   <title>GitHub Stars Tracker</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
   <style>
     .neubrutalism {
@@ -20,13 +21,21 @@
     body {
       font-family: 'Space Grotesk', sans-serif;
     }
+
+    @keyframes fillBar {
+      from { width: 0%; }
+      to { width: var(--target-width); }
+    }
+
+    .progress-animate {
+      animation: fillBar 1.5s ease-out forwards;
+    }
   </style>
 </head>
 <body class="bg-white min-h-screen flex items-center justify-center">
   <main class="max-w-2xl mx-auto p-8 text-center">
     <div class="neubrutalism bg-[#E8F3FF] p-8 md:p-12">
       <h1 class="text-4xl md:text-5xl font-bold mb-6">Support Galamo</h1>
-
       <h6 class="text-center">An open source python package for astronomy, by physics student of Guru Nanak Dev University.</h6>
       <br>
 
@@ -35,38 +44,39 @@
         <div 
           id="progress-fill" 
           class="absolute h-full bg-[#7EB6FF]" 
-          style="width: 0%; transition: width 1.5s ease-out;"
+          style="width: 0%;"
         ></div>
         <div class="absolute inset-0 flex items-center justify-center">
           <span id="progress-text" class="font-bold text-xl">Loading stars...</span>
         </div>
       </div>
-<!-- Our Supporters Button -->
-<div class="text-center mt-8">
-  <button onclick="openModal()" class="neubrutalism bg-blue-500 text-white px-6 py-3 text-lg">
-    <i class="bi bi-people-fill mr-2"></i>
-    Our Supporters
-  </button>
-</div>
 
-<!-- Modal -->
-<div id="supportersModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-  <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 relative shadow-lg border-4 border-black neubrutalism">
-    <button onclick="closeModal()" class="absolute top-4 right-4 text-black text-xl hover:scale-125 transition">
-      &times;
-    </button>
-    <h2 class="text-2xl font-bold mb-4">Supporters of Galamo</h2>
-    <div id="modalStargazers" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4"></div>
-  </div>
-</div>
-<br>
+      <!-- Our Supporters Button -->
+      <div class="text-center mt-8">
+        <button onclick="openModal()" class="neubrutalism bg-blue-500 text-white px-6 py-3 text-lg">
+          <i class="bi bi-people-fill mr-2"></i>
+          Our Supporters
+        </button>
+      </div>
+
+      <!-- Modal -->
+      <div id="supportersModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 relative shadow-lg border-4 border-black neubrutalism">
+          <button onclick="closeModal()" class="absolute top-4 right-4 text-black text-xl hover:scale-125 transition">
+            &times;
+          </button>
+          <h2 class="text-2xl font-bold mb-4">Supporters of Galamo</h2>
+          <div id="modalStargazers" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4"></div>
+        </div>
+      </div>
+      <br>
+
       <!-- Thank you message -->
       <div class="neubrutalism bg-green-200 p-6 mb-8 max-w-xl mx-auto">
         <p class="text-lg leading-relaxed">
           We're truly grateful for every star and every bit of support. Your enthusiasm fuels our passion and helps Galamo grow in ways we never imagined.
-          <br><br>
-          Once we hit 150 stars, we'll randomly pick one lucky person from this group who starred the repo to win a 20% discount coupon from Tim Hortons! ☕🍩 
-          <br><br>
+          <br>
+         
           Thank you for being part of this journey.
         </p>
       </div>
@@ -88,76 +98,102 @@
     </footer>
   </main>
 
-  <!-- GitHub Stars Script -->
+  <!-- Script -->
   <script>
-  const REPO_OWNER = "galamo-org";
-  const REPO_NAME = "galamo";
-  const TARGET_STARS = 150;
+    const REPO_OWNER = "galamo-org";
+    const REPO_NAME = "galamo";
+    const TARGET_STARS = 150;
+    const GITHUB_TOKEN = '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'; // Replace if needed
 
-  async function updateProgressBar() {
-    try {
-      const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`);
-      if (!res.ok) throw new Error("GitHub API error");
+    let hasCelebrated = false;
 
-      const data = await res.json();
-      const stars = data.stargazers_count;
-      const cappedStars = Math.min(stars, TARGET_STARS);
-      const percentage = ((cappedStars / TARGET_STARS) * 100).toFixed(1);
+    async function updateProgressBar() {
+      try {
+        const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`, {
+          headers: {
+            Accept: "application/vnd.github.v3+json",
+            Authorization: `token ${GITHUB_TOKEN}`
+          }
+        });
 
-      document.getElementById("progress-fill").style.width = `${percentage}%`;
-      document.getElementById("progress-text").textContent =
-        `${cappedStars} / ${TARGET_STARS} Stars (${percentage}%)`;
+        if (!res.ok) throw new Error("GitHub API error");
 
-    } catch (error) {
-      console.error("Error fetching star count:", error);
-      document.getElementById("progress-fill").style.width = "0%";
-      document.getElementById("progress-text").textContent = "Can't update star count right now.";
+        const data = await res.json();
+        const stars = data.stargazers_count;
+        const cappedStars = Math.min(stars, TARGET_STARS);
+        const percentage = ((cappedStars / TARGET_STARS) * 100).toFixed(1);
+
+        const fill = document.getElementById("progress-fill");
+        fill.classList.remove("progress-animate");
+        void fill.offsetWidth; // reflow to restart animation
+        fill.style.setProperty("--target-width", `${percentage}%`);
+        fill.classList.add("progress-animate");
+
+        document.getElementById("progress-text").textContent = 
+          `${cappedStars} / ${TARGET_STARS} Stars (${percentage}%)`;
+
+        if (stars >= TARGET_STARS && !hasCelebrated) {
+          hasCelebrated = true;
+          launchCelebration();
+        }
+
+      } catch (error) {
+        console.error("Error fetching star count:", error);
+        document.getElementById("progress-fill").style.width = "0%";
+        document.getElementById("progress-text").textContent = "Can't update star count right now.";
+      }
     }
-  }
 
-  async function loadModalStargazers() {
-    const container = document.getElementById("modalStargazers");
-    container.innerHTML = "<p class='col-span-full'>Loading supporters...</p>";
-
-    try {
-      const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/stargazers?per_page=100`, {
-        headers: { Accept: "application/vnd.github.v3+json" }
+    function launchCelebration() {
+      confetti({
+        particleCount: 300,
+        spread: 100,
+        origin: { y: 0.6 }
       });
-
-      if (!response.ok) throw new Error("GitHub API error");
-
-      const users = await response.json();
-      container.innerHTML = "";
-
-      users.forEach(user => {
-        const div = document.createElement("div");
-        div.innerHTML = `
-          <a href="${user.html_url}" target="_blank" title="${user.login}">
-            <img src="${user.avatar_url}" alt="${user.login}" class="rounded-full w-16 h-16 border-2 border-black hover:scale-110 transition">
-            <p class="text-sm mt-1 truncate">${user.login}</p>
-          </a>
-        `;
-        container.appendChild(div);
-      });
-
-    } catch (error) {
-      console.error("Error loading supporters:", error);
-      container.innerHTML = "<p class='text-red-500 col-span-full'>Couldn't load supporters.</p>";
     }
-  }
 
-  function openModal() {
-    document.getElementById("supportersModal").classList.remove("hidden");
-    loadModalStargazers();
-  }
+    function loadModalStargazers() {
+      const container = document.getElementById("modalStargazers");
+      container.innerHTML = "<p class='col-span-full'>Loading supporters...</p>";
 
-  function closeModal() {
-    document.getElementById("supportersModal").classList.add("hidden");
-  }
+      fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/stargazers?per_page=100`, {
+        headers: {
+          Accept: "application/vnd.github.v3+json",
+          Authorization: `token ${GITHUB_TOKEN}`
+        }
+      })
+      .then(res => res.json())
+      .then(users => {
+        container.innerHTML = "";
+        users.forEach(user => {
+          const div = document.createElement("div");
+          div.innerHTML = `
+            <a href="${user.html_url}" target="_blank" title="${user.login}">
+              <img src="${user.avatar_url}" alt="${user.login}" class="rounded-full w-16 h-16 border-2 border-black hover:scale-110 transition">
+              <p class="text-sm mt-1 truncate">${user.login}</p>
+            </a>
+          `;
+          container.appendChild(div);
+        });
+      })
+      .catch(err => {
+        console.error("Error loading supporters:", err);
+        container.innerHTML = "<p class='text-red-500 col-span-full'>Couldn't load supporters.</p>";
+      });
+    }
 
-  updateProgressBar();
-  setInterval(updateProgressBar, 30000);
-</script>
+    function openModal() {
+      document.getElementById("supportersModal").classList.remove("hidden");
+      loadModalStargazers();
+    }
+
+    function closeModal() {
+      document.getElementById("supportersModal").classList.add("hidden");
+    }
+
+    updateProgressBar();
+    setInterval(updateProgressBar, 30000);
+  </script>
 
 </body>
 </html>
