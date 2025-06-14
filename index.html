@@ -197,16 +197,89 @@
   <h4> Latest source Release </h4>
 
   <span class="version">
-    2.49.0
+    0.0.8
   </span>
 
-  <a href="https://raw.github.com/git/git/master/Documentation/RelNotes/2.49.0.adoc">Release Notes</a>
+  <a href="https://raw.github.com/git/git/master/Documentation/RelNotes/2.49.0.adoc">Check What's New!</a>
   <span class="release-date">
     (2025-03-14)
   </span>
   <span data-mac="2.33.0" data-win="2.49.0" id="installer-version"></span>
 
-  <a href="https://www.kernel.org/pub/software/scm/git/" class="button" id="download-link">Download Source Code</a>
+<p>Command line for installation</p>
+  <style>
+    .code-container {
+      position: relative;
+      background-color: #1e1e1e;
+      color: #f1f1f1;
+      padding: 5px 10px;
+      width: 200px;
+      border-radius: 8px;
+      font-family: monospace;
+      max-width: 300px;
+      font-size: 14px;
+      overflow-x: auto;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .copy-button svg {
+      width: 16px;
+      height: 16px;
+      fill: white;
+    }
+  </style>
+  <div class="code-container">
+    <button id="copy-btn" class="copy-button" onclick="copyToClipboard()">
+      <!-- Copy Icon -->
+      <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0V0z" fill="none"/>
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 18H8V7h11v16z"/>
+      </svg>
+
+      <!-- Check Icon -->
+      <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display: none;">
+        <path d="M0 0h24v24H0V0z" fill="none"/>
+        <path d="M9 16.17L4.83 12 3.41 13.41 9 19l12-12-1.41-1.41z"/>
+      </svg>
+    </button>
+
+    <code id="terminal-command">pip install galamo</code>
+  </div>
+
+  <script>
+    function copyToClipboard() {
+      const text = document.getElementById("terminal-command").textContent;
+      const copyIcon = document.getElementById("copy-icon");
+      const checkIcon = document.getElementById("check-icon");
+
+      navigator.clipboard.writeText(text).then(() => {
+        // Show check icon, hide copy
+        copyIcon.style.display = "none";
+        checkIcon.style.display = "inline";
+
+        // Revert back after 1.5s
+        setTimeout(() => {
+          checkIcon.style.display = "none";
+          copyIcon.style.display = "inline";
+        }, 1500);
+      });
+    }
+  </script>
 </div>
 
     <table>
