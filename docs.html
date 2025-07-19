@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO: Primary Meta Tags -->
+    <title>Galamo Documentation | Python Galaxy Analysis</title>
+    <meta name="description" content="Official documentation for Galamo. Learn how to install, use, and contribute to the open-source Python package for galaxy analysis. Includes API reference and tutorials.">
+    <meta name="keywords" content="Galamo documentation, Galamo API, Python astronomy, galaxy analysis, software documentation, astrophysics, machine learning">
+    <link rel="canonical" href="https://www.galamo.org/documentation.html" />
+    <link rel="shortcut icon" href="images/o.svg" type="image/x-icon">
+
+    <!-- SEO: Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Galamo Documentation | Python Galaxy Analysis">
+    <meta property="og:description" content="Official documentation for Galamo, with guides on installation, usage, and API references.">
+    <meta property="og:url" content="https://www.galamo.org/documentation.html">
+    <meta property="og:site_name" content="Galamo">
+    <meta property="og:image" content="https://www.galamo.org/images/galamo_social_banner.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- SEO: Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Galamo Documentation | Python Galaxy Analysis">
+    <meta name="twitter:description" content="Official documentation for Galamo, with guides on installation, usage, and API references.">
+    <meta name="twitter:image" content="https://www.galamo.org/images/galamo_social_banner.png">
+
+    <!-- Stylesheets, Fonts & Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #0a0e1a; color: #e5e7eb; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://cdn.eso.org/images/screen/eso1137_hubble_dark.jpg'); background-size: cover; background-position: center; background-attachment: fixed; opacity: 0.2; z-index: -1; }
+        .glass-panel { background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        
+        /* Main content prose styling */
+        .prose-dark { @apply text-gray-300; }
+        .prose-dark h1, .prose-dark h2, .prose-dark h3, .prose-dark h4 { @apply text-white; }
+        .prose-dark h1 { @apply text-4xl md:text-5xl font-bold mb-4; }
+        .prose-dark h2 { @apply text-3xl font-bold mt-16 mb-6 pb-3 border-b border-gray-700; }
+        .prose-dark p { @apply leading-relaxed mb-4; }
+        .prose-dark a { @apply text-cyan-400 hover:underline; }
+        .prose-dark strong { @apply text-white; }
+        .prose-dark code { @apply bg-gray-800 text-cyan-300 font-mono text-sm rounded px-1.5 py-1; }
+        .prose-dark pre { @apply bg-gray-900/70 border border-gray-700 rounded-lg p-4 text-sm overflow-x-auto; }
+        .prose-dark blockquote { @apply border-l-4 border-cyan-500 pl-4 text-gray-400 italic my-6; }
+        .prose-dark ul { @apply list-disc list-inside space-y-2 mb-4; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 sm:px-6">
+        <div class="lg:flex">
+            <!-- Left Sidebar (Navigation) -->
+            <aside class="lg:w-64 lg:flex-shrink-0 lg:sticky lg:top-0 lg:self-start py-8 lg:py-16 lg:h-screen">
+                <div class="glass-panel p-4 rounded-xl">
+                    <a href="https://www.galamo.org" class="inline-block mb-6">
+                        <img src="images/galamo_main.svg" alt="Galamo Logo" class="h-8">
+                    </a>
+                    <nav class="space-y-2 text-sm">
+                        <h3 class="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">Getting Started</h3>
+                        <a href="#introduction" class="block px-2 py-1.5 rounded-md text-gray-300 hover:bg-gray-700/50">Introduction</a>
+                        <a href="#installation" class="block px-2 py-1.5 rounded-md text-gray-300 hover:bg-gray-700/50">Installation</a>
+                        <a href="#quick-start" class="block px-2 py-1.5 rounded-md text-gray-300 hover:bg-gray-700/50">Quick Start</a>
+
+                        <h3 class="px-2 pt-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">API Reference</h3>
+                        <a href="#api-galaxy-morph" class="block px-2 py-1.5 rounded-md text-gray-300 hover:bg-gray-700/50">galaxy_morph</a>
+                        <a href="#api-bpt" class="block px-2 py-1.5 rounded-md text-gray-300 hover:bg-gray-700/50">bpt</a>
+                        <a href="#api-psr" class="block px-2 py-1.5 rounded-md text-gray-300 hover:bg-gray-700/50">psr</a>
+                        
+                        <h3 class="px-2 pt-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Community</h3>
+                        <a href="#citing" class="block px-2 py-1.5 rounded-md text-gray-300 hover:bg-gray-700/50">Citing Galamo</a>
+                        <a href="learn.html" class="block px-2 py-1.5 rounded-md text-gray-300 hover:bg-gray-700/50">Tutorials</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Right Content Area -->
+            <main class="lg:pl-20 w-full prose-dark py-8 lg:py-16">
+                <article>
+                    <section id="introduction">
+                        <h1>Galamo Documentation</h1>
+                        <p class="text-xl text-gray-400">Welcome to the official documentation for Galamo. This guide provides everything you need to get started with the package, from installation to advanced usage and API details.</p>
+                        <p><strong>Galamo</strong> is an open-source Python package for comprehensive galaxy analysis, integrating machine learning and statistical methods. It provides automated tools for morphology classification, kinematics, photometry, and spectral analysis to aid astrophysical research.</p>
+                    </section>
+
+                    <section id="installation">
+                        <h2>Installation</h2>
+                        <p>Galamo is available on the Python Package Index (PyPI) and can be installed with pip. We recommend installing it within a virtual environment.</p>
+                        <pre><code class="language-bash">pip install galamo</code></pre>
+                        <p>To get the latest development version, you can install it directly from the GitHub repository:</p>
+                        <pre><code class="language-bash">pip install git+https://github.com/galamo-org/galamo.git</code></pre>
+                    </section>
+                    
+                    <section id="quick-start">
+                        <h2>Quick Start</h2>
+                        <p>Here's a simple example of how to use Galamo to classify the morphology of a galaxy from an SDSS Object ID.</p>
+                        <pre><code class="language-python">
+# Import the necessary module
+from galamo.galaxy_morph import classify_morphology
+
+# Provide the SDSS Object ID of the galaxy you want to classify
+sdss_obj_id = 1237657642924441642
+
+# Get the classification
+try:
+    classification_results = classify_morphology(sdss_obj_id)
+    
+    # Print the primary classification
+    print(f"Galaxy Morphology Classification for ObjID: {sdss_obj_id}")
+    print(f"Primary Class: {classification_results['primary_class']}")
+    print(f"Confidence: {classification_results['confidence']:.2f}")
+    
+    # Print detailed probabilities
+    print("\nDetailed Probabilities:")
+    for key, value in classification_results['detailed_probabilities'].items():
+        print(f"- {key}: {value:.3f}")
+
+except Exception as e:
+    print(f"An error occurred: {e}")
+                        </code></pre>
+                    </section>
+
+                    <section id="api-reference">
+                        <h2>API Reference</h2>
+                        <p>This section provides a detailed reference for Galamo's public API.</p>
+
+                        <!-- API Card: galaxy_morph -->
+                        <div id="api-galaxy-morph" class="mt-8">
+                            <div class="glass-panel rounded-xl">
+                                <div class="p-6 border-b border-gray-700">
+                                    <h3 class="text-lg font-semibold text-white -mt-1">galamo.galaxy_morph</h3>
+                                </div>
+                                <div class="p-6">
+                                    <code class="text-base font-bold">classify_morphology(sdss_obj_id: int) -> dict</code>
+                                    <p class="mt-4 text-gray-400">Fetches an image from SDSS and classifies its morphology.</p>
+                                    <div class="mt-6">
+                                        <h4 class="font-semibold text-gray-200">Parameters</h4>
+                                        <div class="mt-2 border-t border-gray-700 pt-2">
+                                            <p><code>sdss_obj_id</code> (int): The 18-digit SDSS DR16 object identifier.</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h4 class="font-semibold text-gray-200">Returns</h4>
+                                        <div class="mt-2 border-t border-gray-700 pt-2">
+                                            <p><code>dict</code>: A dictionary containing the primary class, confidence, and detailed probabilities.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- API Card: bpt -->
+                        <div id="api-bpt" class="mt-8">
+                            <div class="glass-panel rounded-xl">
+                                <div class="p-6 border-b border-gray-700">
+                                    <h3 class="text-lg font-semibold text-white -mt-1">galamo.bpt</h3>
+                                </div>
+                                <div class="p-6">
+                                    <code class="text-base font-bold">classify_bpt(nii_ha_ratio: float, oiii_hb_ratio: float) -> str</code>
+                                    <p class="mt-4 text-gray-400">Classifies a galaxy's nuclear activity based on emission line ratios.</p>
+                                    <div class="mt-6">
+                                        <h4 class="font-semibold text-gray-200">Parameters</h4>
+                                        <div class="mt-2 border-t border-gray-700 pt-2 space-y-2">
+                                            <p><code>nii_ha_ratio</code> (float): The ratio of [NII] to H-alpha emission lines.</p>
+                                            <p><code>oiii_hb_ratio</code> (float): The ratio of [OIII] to H-beta emission lines.</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h4 class="font-semibold text-gray-200">Returns</h4>
+                                        <div class="mt-2 border-t border-gray-700 pt-2">
+                                            <p><code>str</code>: The classification ('AGN', 'Composite', or 'Star-forming').</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- API Card: psr -->
+                        <div id="api-psr" class="mt-8">
+                            <div class="glass-panel rounded-xl">
+                                <div class="p-6 border-b border-gray-700">
+                                    <h3 class="text-lg font-semibold text-white -mt-1">galamo.psr</h3>
+                                </div>
+                                <div class="p-6">
+                                    <code class="text-base font-bold">enhance_image(image_path: str, output_path: str) -> None</code>
+                                    <p class="mt-4 text-gray-400">Applies enhancements to a low-light astronomical image.</p>
+                                    <div class="mt-6">
+                                        <h4 class="font-semibold text-gray-200">Parameters</h4>
+                                        <div class="mt-2 border-t border-gray-700 pt-2 space-y-2">
+                                            <p><code>image_path</code> (str): Path to the input image file.</p>
+                                            <p><code>output_path</code> (str): Path to save the enhanced image.</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h4 class="font-semibold text-gray-200">Returns</h4>
+                                        <div class="mt-2 border-t border-gray-700 pt-2">
+                                            <p><code>None</code></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="citing">
+                        <h2>Citing Galamo</h2>
+                        <p>If you use Galamo in your research, please cite the software to acknowledge the work that went into its development. Please use the following BibTeX entry:</p>
+                        <pre><code class="language-bibtex">
+@software{galamo_2025,
+  author       = {Dingra, Jashanpreet Singh and Singh, Vikramjeet},
+  title        = {Galamo: An open-source Python package for comprehensive galaxy analysis},
+  month        = jul,
+  year         = 2025,
+  publisher    = {Zenodo},
+  version      = {0.0.9},
+  doi          = {10.5281/zenodo.XXXXXXX},
+  url          = {https://doi.org/10.5281/zenodo.XXXXXXX}
+}
+                        </code></pre>
+                        <blockquote>Note: Please replace the DOI with the actual DOI from the Zenodo record for the specific version you used.</blockquote>
+                    </section>
+                </article>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
