@@ -1,413 +1,412 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galamo Learn - Python-based Astronomy Tutorials</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+    <title>Learn Galamo: Tutorials for Python-based Astronomy</title>
+    <meta name="description" content="Explore a collection of hands-on tutorials for Galamo. Learn Python for astronomical data analysis, visualization, and modeling, from beginner to advanced levels.">
+    <meta name="keywords" content="Galamo tutorials, learn Galamo, Python astronomy tutorials, astrophysics Python, galaxy classification tutorial, BPT diagram, astronomical data analysis, visualization">
+    <link rel="canonical" href="https://www.galamo.org/learn.html" />
+    <link rel="shortcut icon" href="images/o.svg" type="image/x-icon">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Learn Galamo: Tutorials for Python-based Astronomy">
+    <meta property="og:description" content="Explore hands-on tutorials for data analysis, visualization, and modeling with Galamo.">
+    <meta property="og:url" content="https://www.galamo.org/learn.html">
+    <meta property="og:site_name" content="Galamo">
+    <meta property="og:image" content="https://www.galamo.org/images/o.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Learn Galamo: Tutorials for Python-based Astronomy">
+    <meta name="twitter:description" content="Explore hands-on tutorials for data analysis, visualization, and modeling with Galamo.">
+    <meta name="twitter:image" content="https://www.galamo.org/images/o.svg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: #000000;
-        }
-        .tutorial-card {
-            background: #f8f8f8;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e0e0e0;
-        }
-        .tutorial-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .code-block {
-            background: #f3f3f3;
-            border-radius: 4px;
-            border: 1px solid #e0e0e0;
-        }
-        .loading {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none;
-        }
-        .loading.active {
-            display: block;
-        }
-        .filter-section {
-            border-right: 1px solid #e0e0e0;
-        }
-        .filter-input {
-            border: 1px solid #d1d1d1;
-            transition: border-color 0.2s ease;
-        }
-        .filter-input:focus {
-            border-color: #000000;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
-        }
-        .pill-tag {
-            background-color: #f0f0f0;
-            color: #000000;
-            border: 1px solid #d0d0d0;
-        }
-        .btn-primary {
-            background-color: #000000;
-            color: #ffffff;
-            transition: background-color 0.2s ease;
-        }
-        .btn-primary:hover {
-            background-color: #333333;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #0a0e1a; color: #e5e7eb; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://cdn.eso.org/images/screen/eso1137_hubble_dark.jpg'); background-size: cover; background-position: center; background-attachment: fixed; opacity: 0.2; z-index: -1; }
+        .glass-panel { background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .custom-select { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); background-position: right 0.5rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em; padding-right: 2.5rem; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
     </style>
+
+    <script type="application/ld+json" id="structured-data"></script>
 </head>
-<body class="min-h-screen">
-    <!-- Navigation -->
-    <nav class="bg-black shadow-md fixed w-full z-50">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <!-- Left side (logo) -->
-            <a href="#" class="text-2xl font-bold text-white flex items-center">
-                <img src="images/galamo_main.svg" class="h-9" alt="Galamo logo">
-            </a>
+<body class="antialiased">
     
-            <!-- Right side (links) - hidden on mobile -->
-            <div class="hidden md:flex space-x-6 items-center">
-                <a href="https://www.galamo.org" class="text-white hover:text-gray-100">Home</a>
-                <a href="https://www.galamo.org/contribute.html" class="text-white hover:text-gray-100">Contribute</a>
-                <a href="https://github.com/galamo-org/tutorials" target="_blank" class="text-white hover:text-gray-100" aria-label="GitHub">
-                    <i class="fab fa-github text-xl"></i>
-                </a>
+    <header class="fixed top-0 left-0 right-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center glass-panel rounded-b-xl mt-4">
+            <a href="https://www.galamo.org">
+                <img src="images/galamo_main.svg" class="h-8" alt="Galamo Logo">
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="https://www.galamo.org" class="text-gray-300 hover:text-white transition">Home</a>
+                <a href="https://www.galamo.org/team.html" class="text-gray-300 hover:text-white transition">Team</a>
+                 <a href="#" onclick="openContributionModal(); return false;" class="text-gray-300 hover:text-white transition">Contribute</a>
             </div>
-    
-            <!-- Mobile menu button -->
-            <button id="mobileMenuBtn" class="md:hidden text-white">
-                <i class="bi bi-list text-2xl"></i>
-            </button>
-        </div>
-    
-        <!-- Mobile menu -->
-        <div id="mobileMenu" class="md:hidden hidden pt-3 pb-2 px-4">
-            <a href="https://www.galamo.org" class="block py-2 text-white">Home</a>
-            <a href="https://www.galamo.org/contribute.html" class="block py-2 text-white">Contribute</a>
-            <a href="https://github.com/galamo-org/tutorials" target="_blank" class="block py-2 text-white" aria-label="GitHub">
-                <i class="fab fa-github text-xl"></i>
+            <a href="https://github.com/galamo-org/galamo" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition">
+                <i data-feather="github"></i>
             </a>
-        </div>
-    </nav>
-    
+        </nav>
+        
+    </header>
 
-    <!-- Hero Section -->
-    <section class="pt-24 pb-12 px-4 bg-black">
-        <div class="container mx-auto max-w-3xl text-left">
-            <h1 class="text-2xl md:text-3xl font-bold mb-4 text-blue-400">Learn Galamo</h1>
-            <p class="text-base md:text-lg text-white mb-6">
-                Learn how to use Python for astronomy through tutorials and guides that cover Galamo and other packages in the astronomy Python ecosystem.
+    <main class="pt-32">
+
+  <div id="contributionModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 p-4">
+      <div class="bg-[#1a202c] border border-gray-700 max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 rounded-lg shadow-2xl relative">
+          <button onclick="closeContributionModal()" class="absolute top-4 right-4 bg-gray-800 w-8 h-8 rounded-full text-gray-400 hover:text-white hover:bg-gray-700 transition-all">&times;</button>
+          <h2 class="text-2xl font-bold mb-4 text-white">Contributing to Galamo</h2>
+          <p class="text-gray-400 leading-relaxed mb-4">Thank you for your interest in contributing to <strong>Galamo</strong>. This document outlines the guidelines and procedures for contributing. We welcome contributions that improve the software, documentation, or overall usability of the package.</p>
+          
+          <hr class="border-gray-700 my-6">
+
+          <h3 id="types-of-contributions" class="text-xl font-semibold mt-6 mb-2 text-white">Types of Contributions</h3>
+          <p class="text-gray-400 mb-4">We welcome the following types of contributions:</p>
+          <ul class="list-disc list-inside text-gray-400 space-y-2">
+              <li>Reporting bugs</li>
+              <li>Proposing and implementing new features</li>
+              <li>Improving documentation and tutorials</li>
+              <li>Writing unit tests or enhancing test coverage</li>
+              <li>Refactoring or improving existing code</li>
+          </ul>
+
+          <hr class="border-gray-700 my-6">
+
+          <h3 id="bug-reports" class="text-xl font-semibold mt-6 mb-2 text-white">Bug Reports</h3>
+          <p class="text-gray-400 mb-4">To report a bug, please open an issue on the <a href="https://github.com/galamo-org/galamo/issues" target="_blank" rel="noopener noreferrer" class="blue-link">GitHub Issues page</a> with the following information:</p>
+          <ul class="list-disc list-inside text-gray-400 space-y-2">
+              <li>A clear and descriptive title</li>
+              <li>Steps to reproduce the issue</li>
+              <li>Expected and actual behavior</li>
+              <li>Environment details (operating system, Python version)</li>
+              <li>Any relevant error messages or tracebacks</li>
+          </ul>
+
+          <hr class="border-gray-700 my-6">
+
+          <h3 id="development-environment-setup" class="text-xl font-semibold mt-6 mb-2 text-white">Development Environment Setup</h3>
+          <p class="text-gray-400 mb-4">To contribute code, please follow these steps:</p>
+          <ol class="list-decimal list-inside text-gray-400 space-y-4">
+              <li>Fork the repository on GitHub.</li>
+              <li>Clone your forked repository:
+                  <pre class="bg-gray-900 text-white p-3 rounded-md overflow-x-auto my-2 text-sm"><code>git clone https://github.com/your-username/galamo.git
+cd galamo</code></pre>
+              </li>
+              <li>Create and activate a virtual environment:
+                  <pre class="bg-gray-900 text-white p-3 rounded-md overflow-x-auto my-2 text-sm"><code>python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
+              </li>
+              <li>Install the package in editable mode with development dependencies:
+                  <pre class="bg-gray-900 text-white p-3 rounded-md overflow-x-auto my-2 text-sm"><code>pip install -e .[dev]</code></pre>
+              </li>
+          </ol>
+
+          <hr class="border-gray-700 my-6">
+
+          <h3 id="pull-request-procedure" class="text-xl font-semibold mt-6 mb-2 text-white">Pull Request Procedure</h3>
+          <ol class="list-decimal list-inside text-gray-400 space-y-4">
+              <li>Create a new branch for your work:
+                  <pre class="bg-gray-900 text-white p-3 rounded-md overflow-x-auto my-2 text-sm"><code>git checkout -b feature/my-new-feature</code></pre>
+              </li>
+              <li>Make your changes and commit them with a clear message:
+                  <pre class="bg-gray-900 text-white p-3 rounded-md overflow-x-auto my-2 text-sm"><code>git commit -m "feat: Add new feature"</code></pre>
+              </li>
+              <li>Push the changes to your fork:
+                  <pre class="bg-gray-900 text-white p-3 rounded-md overflow-x-auto my-2 text-sm"><code>git push origin feature/my-new-feature</code></pre>
+              </li>
+              <li>Open a pull request (PR) to the `main` branch of the `galamo-org/galamo` repository.</li>
+              <li>In the PR description, explain your changes and link to any relevant issues.</li>
+          </ol>
+          
+          <hr class="border-gray-700 my-6">
+
+          <h3 id="code-of-conduct" class="text-xl font-semibold mt-6 mb-2 text-white">Code of Conduct</h3>
+          <p class="text-gray-400 leading-relaxed">All contributors are expected to adhere to the project's Code of Conduct. We are committed to providing a welcoming and inclusive environment for everyone. We appreciate your efforts to improve Galamo!</p>
+
+      </div>
+  </div>
+        <section class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-white">Learn Galamo</h1>
+            <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
+                Explore hands-on tutorials for Galamo and other essential astronomy packages.
             </p>
-        </div>
-    </section>
-    
-
-    <!-- Main Content -->
-    <section class="py-8 px-4">
-        <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row">
-                <!-- Filter Section (Left Column) -->
-                <div class="filter-section md:w-1/3 lg:w-1/4 mb-6 md:mb-0 pr-0 md:pr-6">
-                    <div class="bg-white rounded-lg p-5 shadow-sm mb-6">
-                        <h2 class="text-xl font-bold mb-4">Search & Filter</h2>
-                        <input 
-                            type="text" 
-                            id="searchInput" 
-                            placeholder="Search tutorials..." 
-                            class="filter-input w-full p-3 rounded mb-4 bg-white"
-                            aria-label="Search tutorials"
-                        >
-                        
-                        <div class="mb-4">
-                            <label for="formatFilter" class="block mb-2 font-medium">Format</label>
-                            <select 
-                                id="formatFilter" 
-                                class="filter-input w-full p-2 rounded bg-white"
-                                aria-label="Filter by format"
-                            >
-                                <option value="">All Formats</option>
-                                <option value="notebook">Jupyter Notebook</option>
-                                <option value="script">Python Script</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="packageFilter" class="block mb-2 font-medium">Galamo Package</label>
-                            <select 
-                                id="packageFilter" 
-                                class="filter-input w-full p-2 rounded bg-white"
-                                aria-label="Filter by package"
-                            >
-                                <option value="">All Packages</option>
-                                <option value="galamo-core">Galamo Core</option>
-                                <option value="galamo-vis">Galamo Visualization</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="difficultyFilter" class="block mb-2 font-medium">Difficulty Level</label>
-                            <select 
-                                id="difficultyFilter" 
-                                class="filter-input w-full p-2 rounded bg-white"
-                                aria-label="Filter by difficulty"
-                            >
-                                <option value="">All Levels</option>
-                                <option value="beginner">Beginner</option>
-                                <option value="intermediate">Intermediate</option>
-                                <option value="advanced">Advanced</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="taskFilter" class="block mb-2 font-medium">Astronomical Task</label>
-                            <select 
-                                id="taskFilter" 
-                                class="filter-input w-full p-2 rounded bg-white"
-                                aria-label="Filter by task"
-                            >
-                                <option value="">All Tasks</option>
-                                <option value="data-analysis">Data Analysis</option>
-                                <option value="visualization">Visualization</option>
-                                <option value="modeling">Modeling</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label for="scienceFilter" class="block mb-2 font-medium">Science Domain</label>
-                            <select 
-                                id="scienceFilter" 
-                                class="filter-input w-full p-2 rounded bg-white"
-                                aria-label="Filter by science domain"
-                            >
-                                <option value="">All Domains</option>
-                                <option value="stellar">Stellar Astronomy</option>
-                                <option value="cosmology">Cosmology</option>
-                                <option value="planetary">Planetary Science</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tutorials Grid (Right Column) -->
-                <div class="md:w-2/3 lg:w-3/4">
-                    <div id="tutorialCount" class="text-gray-600 mb-4">Showing <span id="visibleCount">0</span> tutorials</div>
-                    <div id="tutorialsGrid" class="space-y-4">
-                        <!-- Tutorials will be dynamically inserted here -->
-                    </div>
-                </div>
+            <div class="mt-8 max-w-xl mx-auto relative">
+                <i data-feather="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search for a tutorial (e.g., 'BPT analysis')" 
+                    class="w-full bg-gray-900/80 border border-gray-700 text-white placeholder-gray-500 rounded-full py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                    aria-label="Search tutorials">
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-100 py-8 px-4 mt-12 border-t border-gray-200">
-        <div class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-lg font-bold mb-4 flex items-center space-x-2">
-                        <img src="images/o.svg" class="w-7 h-7" alt="icon">
-                        <span>Code of Conduct</span>
-                      </h3>
-                    <hr>
-
-                    <p>The Galamo project is committed to fostering an inclusive community. The community of participants in open source Astronomy projects is made up of members from around the globe with a diverse set of skills, personalities, and experiences. It is through these differences that our community experiences success and continued growth. <a href="code_of_conduct.html" style="color: rgb(0, 170, 255);">Learn more</a></p>
-                
-                </div>
-                <div>
+        <section class="container mx-auto px-6 mt-12">
+            <div class="glass-panel rounded-xl p-4 mb-8">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 items-center">
+                    <h3 class="col-span-2 lg:col-span-1 text-lg font-semibold text-white">Filter by:</h3>
                     
-                    <h3 class="text-lg font-bold mb-4">Institutional Collaboration</h3>
-                    <div class="bg-gray-200 p-4 rounded text-center mb-4">
-                        <p class="mb-2">Your Logo Here</p>
-                        <button class="btn-primary px-4 py-2 rounded">Collaborate</button>
-                    </div>
+                    <select id="packageFilter" class="custom-select w-full bg-gray-800/50 border-gray-700 rounded-lg p-2 focus:ring-2 focus:ring-cyan-500 focus:outline-none" aria-label="Filter by package">
+                        <option value="">Package</option>
+                        <option value="galamo-core">Galamo Core</option>
+                        <option value="galamo-vis">Galamo Vis</option>
+                    </select>
+
+                    <select id="difficultyFilter" class="custom-select w-full bg-gray-800/50 border-gray-700 rounded-lg p-2 focus:ring-2 focus:ring-cyan-500 focus:outline-none" aria-label="Filter by difficulty">
+                        <option value="">Difficulty</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+
+                    <select id="taskFilter" class="custom-select w-full bg-gray-800/50 border-gray-700 rounded-lg p-2 focus:ring-2 focus:ring-cyan-500 focus:outline-none" aria-label="Filter by task">
+                        <option value="">Task</option>
+                        <option value="data-analysis">Data Analysis</option>
+                        <option value="visualization">Visualization</option>
+                        <option value="modeling">Modeling</option>
+                    </select>
+                    
+                    <select id="scienceFilter" class="custom-select w-full bg-gray-800/50 border-gray-700 rounded-lg p-2 focus:ring-2 focus:ring-cyan-500 focus:outline-none" aria-label="Filter by science domain">
+                        <option value="">Domain</option>
+                        <option value="stellar">Stellar</option>
+                        <option value="cosmology">Cosmology</option>
+                        <option value="planetary">Planetary</option>
+                    </select>
+                    
+                    <button id="clearFiltersBtn" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition">Clear</button>
                 </div>
             </div>
-            <div class="mt-8 pt-6 border-t border-gray-200 text-center">
-                <p class="text-gray-600">© 2025 Galamo All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
 
-    <!-- Loading Spinner -->
-    <div class="loading">
-        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black"></div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.min.js"></script>
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Sample tutorials data
-        const tutorials = [
-            {
-                id: 1,
-                title: "BPT (Baldwin, Phillips & Terlevich) Analysis",
-                description: "Learn the basics of handling astronomical data with Python. This tutorial covers data formats, loading astronomical images, and basic plotting techniques.",
-                format: "notebook",
-                package: "galamo-core",
-                difficulty: "advanced",
-                author: "Jashanpreet Singh Dingra",
-                task: "data-analysis",
-                science: "cosmology",
-                dateAdded: "2025-05-01",
-                url: "tutorials/bpt/BPT.html",
-                ipynb:"tutorials/bpt/BPT.ipynb"
-            },
-            {
-                id: 2,
-                title: "Photometric Galaxy Morphology Classfication",
-                description: "Create beautiful astronomical visualizations using Galamo. Learn to create publication-quality plots, multi-wavelength images, and interactive visualizations.",
-                format: "notebook",
-                package: "galamo-core",
-                difficulty: "advanced",
-                author: "Jashanpreet Singh Dingra",
-                task: "data-analysis",
-                science: "cosmology",
-                dateAdded: "2025-05-20",
-                url: "#",
-                ipynb:""
-            },
-            {
-                id: 3,
-                title: "Low Light Image Inhancement",
-                description: "Learn how to process and analyze exoplanet transit data to detect and characterize planets orbiting other stars.",
-                format: "notebook",
-                package: "galamo-vis",
-                difficulty: "beginner",
-                author: "Jashanpreet Singh Dingra",
-                task: "visualization",
-                science: "planetary",
-                dateAdded: "2023-06-10",
-                url: "#",
-                ipynb:""
-            },
+            <div id="tutorialCount" class="text-gray-400 mb-4">Showing <span id="visibleCount" class="font-semibold text-white">0</span> of <span id="totalCount" class="font-semibold text-white">0</span> tutorials</div>
             
+            <div id="tutorialsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+             <div id="noResults" class="hidden text-center py-16">
+                <h3 class="text-2xl font-semibold text-white">No Tutorials Found</h3>
+                <p class="text-gray-400 mt-2">Try adjusting your search or filter criteria.</p>
+            </div>
+        </section>
+    </main>
+    
+<footer class="text-center mt-12 text-gray-500">
+             <p>Visit the official website at <a href="https://www.galamo.org" target="_blank" rel="noopener noreferrer" class="font-medium text-blue-400 hover:text-blue-300">www.galamo.org</a></p>
+            <p>Find Galamo on 
+                <a href="https://pypi.org/project/galamo/" target="_blank" rel="noopener noreferrer" class="font-medium text-blue-400 hover:text-blue-300">PyPI</a> & 
+                <a href="https://github.com/galamo-org/galamo" target="_blank" rel="noopener noreferrer" class="font-medium text-blue-400 hover:text-blue-300">GitHub</a>.
+            </p>
+        </footer>
+
+    <script>
+        // --- DATA ---
+        const tutorials = [
+             {
+                id: 1, title: "BPT Diagram Analysis",
+                description: "Classify galaxies into AGN, composite, or star-forming based on the BPT diagram using key emission line ratios.",
+                format: "notebook", package: "galamo-core", difficulty: "advanced",
+                author: "J. S. Dingra", task: "data-analysis", science: "cosmology",
+                dateAdded: "2025-05-01", url: "https://www.galamo.org/tutorials/bpt/BPT.html", ipynb: "https://www.galamo.org/tutorials/bpt/BPT.ipynb"
+            },
+            {
+                id: 2, title: "Galaxy Morphology Classification",
+                description: "Use a CNN to classify galaxy images into spiral, elliptical, and merger categories based on photometric data.",
+                format: "notebook", package: "galamo-core", difficulty: "advanced",
+                author: "J. S. Dingra", task: "modeling", science: "cosmology",
+                dateAdded: "2025-05-20", url: "#", ipynb: ""
+            },
+            {
+                id: 3, title: "Enhancing Low-Light Images",
+                description: "Apply a computer vision pipeline to denoise and enhance faint astronomical images for better analysis.",
+                format: "notebook", package: "galamo-vis", difficulty: "intermediate",
+                author: "J. S. Dingra", task: "visualization", science: "planetary",
+                dateAdded: "2025-06-10", url: "#", ipynb: ""
+            },
         ];
 
-        // DOM Elements
+        // --- DOM ELEMENTS ---
         const searchInput = document.getElementById('searchInput');
-        const formatFilter = document.getElementById('formatFilter');
         const packageFilter = document.getElementById('packageFilter');
         const difficultyFilter = document.getElementById('difficultyFilter');
         const taskFilter = document.getElementById('taskFilter');
         const scienceFilter = document.getElementById('scienceFilter');
         const tutorialsGrid = document.getElementById('tutorialsGrid');
         const visibleCount = document.getElementById('visibleCount');
+        const totalCount = document.getElementById('totalCount');
+        const noResults = document.getElementById('noResults');
+        const clearFiltersBtn = document.getElementById('clearFiltersBtn');
 
-        // Filter function
+        // --- FUNCTIONS ---
         function filterTutorials() {
             const searchTerm = searchInput.value.toLowerCase();
-            const formatValue = formatFilter.value;
             const packageValue = packageFilter.value;
             const difficultyValue = difficultyFilter.value;
             const taskValue = taskFilter.value;
             const scienceValue = scienceFilter.value;
 
-            const filtered = tutorials.filter(tutorial => {
-                const matchesSearch = tutorial.title.toLowerCase().includes(searchTerm) ||
-                                    tutorial.description.toLowerCase().includes(searchTerm);
-                const matchesFormat = !formatValue || tutorial.format === formatValue;
-                const matchesPackage = !packageValue || tutorial.package === packageValue;
-                const matchesDifficulty = !difficultyValue || tutorial.difficulty === difficultyValue;
-                const matchesTask = !taskValue || tutorial.task === taskValue;
-                const matchesScience = !scienceValue || tutorial.science === scienceValue;
-
-                return matchesSearch && matchesFormat && matchesPackage && 
-                       matchesDifficulty && matchesTask && matchesScience;
-            });
-
+            const filtered = tutorials.filter(t => 
+                (t.title.toLowerCase().includes(searchTerm) || t.description.toLowerCase().includes(searchTerm)) &&
+                (!packageValue || t.package === packageValue) &&
+                (!difficultyValue || t.difficulty === difficultyValue) &&
+                (!taskValue || t.task === taskValue) &&
+                (!scienceValue || t.science === scienceValue)
+            );
             renderTutorials(filtered);
         }
 
-        // Render tutorials
-        function renderTutorials(tutorials) {
+        function renderTutorials(tutorialsToRender) {
             tutorialsGrid.innerHTML = '';
+            noResults.classList.toggle('hidden', tutorialsToRender.length > 0);
+            
+            tutorialsToRender.forEach(tutorial => {
+                const card = document.createElement('div');
+                card.className = 'glass-panel rounded-xl p-6 flex flex-col hover:-translate-y-1 hover:border-cyan-400/50 transition-all duration-300';
+                const date = new Date(tutorial.dateAdded);
+                const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 
-            if (tutorials.length === 0) {
-                tutorialsGrid.innerHTML = '<div class="p-6 bg-gray-100 rounded-lg text-center">No tutorials match your search criteria. Try adjusting your filters.</div>';
-            } else {
-                tutorials.forEach(tutorial => {
-                    const card = document.createElement('div');
-                    card.className = 'tutorial-card p-6 rounded-lg';
-                    
-                    // Format date
-                    const date = new Date(tutorial.dateAdded);
-                    const formattedDate = date.toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'short', 
-                        day: 'numeric' 
-                    });
-                    
-                    card.innerHTML = `
-                        <h3 class="text-xl font-bold mb-2">${tutorial.title}</h3>
-                        <p class="text-gray-600 mb-4">${tutorial.description}</p>
+                card.innerHTML = `
+                    <div class="flex-grow">
+                        <div class="flex items-center space-x-2 text-sm text-cyan-400 mb-2 font-medium">
+                            <i data-feather="${tutorial.format === 'notebook' ? 'book-open' : 'code'}" class="w-4 h-4"></i>
+                            <span>${tutorial.package}</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">${tutorial.title}</h3>
+                        <p class="text-gray-400 text-sm mb-4">${tutorial.description}</p>
+                    </div>
+                    <div>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="pill-tag px-3 py-1 rounded-full text-sm">${tutorial.format}</span>
-                            <span class="pill-tag px-3 py-1 rounded-full text-sm">${tutorial.package}</span>
-                            <span class="pill-tag px-3 py-1 rounded-full text-sm">${tutorial.difficulty}</span>
+                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-2.5 py-1 rounded-full">${tutorial.difficulty}</span>
+                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-2.5 py-1 rounded-full">${tutorial.task}</span>
+                        </div>
+                        <div class="border-t border-gray-700 pt-4 flex justify-between items-center">
+                            <div class="text-sm text-gray-500">
+                                <span>${tutorial.author}</span><span class="mx-1">·</span><span>${formattedDate}</span>
                             </div>
-                        <div class="flex justify-between items-center mt-4">
-                            <div>
-                                <span class="text-gray-500 text-sm">By ${tutorial.author}</span>
-                                <span class="text-gray-400 text-sm ml-2">· ${formattedDate}</span>
-                                </div>
-                                <div class="flex gap-2">
-                                    <a href="${tutorial.url}" class="btn-primary px-4 py-2 rounded">
-                                        View Tutorial
-                                        </a>
-                                        <a href="${tutorial.ipynb}" download class="btn-secondary px-4 py-2 rounded">
-                                            Download
-                                            </a>
-                                </div>
+                             <div class="flex items-center space-x-2">
+                                ${tutorial.ipynb ? `<a href="${tutorial.ipynb}" download title="Download Notebook" class="text-gray-400 hover:text-white"><i data-feather="download" class="w-5 h-5"></i></a>` : ''}
+                                <a href="${tutorial.url}" title="View Tutorial" class="bg-cyan-500 hover:bg-cyan-400 text-gray-900 font-bold py-1.5 px-3 rounded-lg text-sm flex items-center space-x-1.5">
+                                    <span>View</span><i data-feather="arrow-right" class="w-4 h-4"></i>
+                                </a>
                             </div>
-                    `;
+                        </div>
+                    </div>`;
+                tutorialsGrid.appendChild(card);
+            });
+            visibleCount.textContent = tutorialsToRender.length;
+        }
+        
+        // --- SEO Function ---
+        function updateStructuredData() {
+            const tutorialListItems = tutorials.map((tutorial, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                    "@type": "LearningResource",
+                    "name": tutorial.title,
+                    "description": tutorial.description,
+                    "url": tutorial.url,
+                    "author": {
+                        "@type": "Person",
+                        "name": tutorial.author
+                    },
+                    "learningResourceType": tutorial.format === 'notebook' ? "Jupyter Notebook" : "Code",
+                    "educationalLevel": tutorial.difficulty.charAt(0).toUpperCase() + tutorial.difficulty.slice(1)
+                }
+            }));
 
-                    
-                    tutorialsGrid.appendChild(card);
-                });
-            }
-            
-            // Update count
-            visibleCount.textContent = tutorials.length;
+            const schema = {
+                "@context": "https://schema.org",
+                "@graph": [{
+                    "@type": "Organization",
+                    "name": "Galamo",
+                    "url": "https://www.galamo.org",
+                    "logo": "https://www.galamo.org/images/galamo_main.svg"
+                }, {
+                    "@type": "CollectionPage",
+                    "name": "Learn Galamo: Tutorials for Python-based Astronomy",
+                    "description": "Explore hands-on tutorials for Galamo and other essential astronomy packages.",
+                    "url": "https://www.galamo.org/learn.html",
+                    "mainEntity": {
+                        "@type": "ItemList",
+                        "itemListElement": tutorialListItems
+                    }
+                }, {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [{
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://www.galamo.org"
+                    }, {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Learn",
+                        "item": "https://www.galamo.org/learn.html"
+                    }]
+                }]
+            };
+            document.getElementById('structured-data').textContent = JSON.stringify(schema);
         }
 
-        // Event listeners
-        searchInput.addEventListener('input', filterTutorials);
-        formatFilter.addEventListener('change', filterTutorials);
-        packageFilter.addEventListener('change', filterTutorials);
-        difficultyFilter.addEventListener('change', filterTutorials);
-        taskFilter.addEventListener('change', filterTutorials);
-        scienceFilter.addEventListener('change', filterTutorials);
-
-        // Function to simulate loading data
-        function loadTutorials() {
-            const loadingSpinner = document.querySelector('.loading');
-            loadingSpinner.classList.add('active');
-            
-            setTimeout(() => {
-                loadingSpinner.classList.remove('active');
-                renderTutorials(tutorials);
-            }, 500);
+        function clearFilters() {
+            searchInput.value = '';
+            packageFilter.value = '';
+            difficultyFilter.value = '';
+            taskFilter.value = '';
+            scienceFilter.value = '';
+            filterTutorials();
         }
 
-        // Initial load
-        document.addEventListener('DOMContentLoaded', loadTutorials);
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+            renderTutorials(tutorials);
+            updateStructuredData(); // Generate schema on page load
+            totalCount.textContent = tutorials.length;
+
+            [searchInput, packageFilter, difficultyFilter, taskFilter, scienceFilter].forEach(el => 
+                el.addEventListener('input', filterTutorials)
+            );
+            clearFiltersBtn.addEventListener('click', clearFilters);
+        });
     </script>
+     <script>
+    // Helper for modals
+    const aboutModal = document.getElementById("aboutModal");
+    const contributionModal = document.getElementById("contributionModal");
+    
+    function openAboutModal() { aboutModal.classList.remove("hidden"); aboutModal.classList.add("flex"); }
+    function closeAboutModal() { aboutModal.classList.add("hidden"); aboutModal.classList.remove("flex"); }
+    function openContributionModal() { contributionModal.classList.remove("hidden"); contributionModal.classList.add("flex"); }
+    function closeContributionModal() { contributionModal.classList.add("hidden"); contributionModal.classList.remove("flex"); }
+
+    // Copy to clipboard function
+    function copyToClipboard() {
+      const text = document.getElementById("terminal-command").textContent;
+      const copyIcon = document.getElementById("copy-icon");
+      const checkIcon = document.getElementById("check-icon");
+      
+      navigator.clipboard.writeText(text).then(() => {
+        copyIcon.classList.add("hidden");
+        checkIcon.classList.remove("hidden");
+        setTimeout(() => {
+          checkIcon.classList.add("hidden");
+          copyIcon.classList.remove("hidden");
+        }, 1500);
+      });
+    }
+
+    // Close modals when clicking outside of them
+    window.onclick = function(event) {
+      if (event.target == aboutModal) closeAboutModal();
+      if (event.target == contributionModal) closeContributionModal();
+    };
+  </script>
 </body>
 </html>
