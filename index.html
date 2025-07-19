@@ -1,335 +1,85 @@
-<!DOCTYPE html><html lang="en"><head>
-	<meta name="generator" content="Hugo 0.139.4">
- <script type="text/javascript">
-  // Always force dark theme
-  document.documentElement.dataset.theme = "dark";
-  localStorage.setItem("theme", "dark");
-</script>
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="utf-8">
+  <meta name="generator" content="Hugo 0.139.4">
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Primary Meta Tags -->
-<title>Galamo – Open-source Galaxy Analysis Toolkit in Python</title>
-<meta name="title" content="Galamo – Open-source Galaxy Analysis Toolkit in Python">
-<meta name="description" content="Galamo is an open-source Python package for galaxy morphology classification, spectral diagnostics, and image enhancement using SDSS and HST data.">
+  <title>Galamo – Open-source Galaxy Analysis Toolkit in Python</title>
+  <meta name="description" content="Galamo is an open-source Python package for galaxy morphology classification, spectral diagnostics, and image enhancement using SDSS and HST data.">
+  <link rel="canonical" href="https://www.galamo.org/">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="galaxy analysis, galamo, galaxy morphology, python astronomy package, SDSS, HST, deep learning astronomy, galaxy classification, BPT diagram, AGN detection, low light image enhancement">
+  <meta name="author" content="Jashanpreet Singh Dingra">
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.galamo.org/">
-<meta property="og:title" content="Galamo – Open-source Galaxy Analysis Toolkit in Python">
-<meta property="og:description" content="Galamo offers machine learning-based galaxy morphology classification, AGN diagnostics with BPT, and low-light image preprocessing.">
-<meta property="og:image" content="https://www.galamo.org/images/galamo_main.svg">
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://www.galamo.org/">
-<meta property="twitter:title" content="Galamo – Open-source Galaxy Analysis Toolkit in Python">
-<meta property="twitter:description" content="Automated tools for morphology, spectra, and photometry – built with Astropy, TensorFlow, and scikit-learn.">
-<meta property="twitter:image" content="https://www.galamo.org/images/galamo_main.svg">
-
-<!-- Canonical Link -->
-<link rel="canonical" href="https://www.galamo.org/">
-
-<!-- Robots -->
-<meta name="robots" content="index, follow">
-
-<!-- Keywords -->
-<meta name="keywords" content="galaxy analysis, galamo, galaxy morphology, python astronomy package, SDSS, HST, deep learning astronomy, galaxy classification, BPT diagram, AGN detection, low light image enhancement">
-
-<!-- Author -->
-<meta name="author" content="Jashanpreet Singh Dingra">
-
-<!-- Structured Data (JSON-LD) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Galamo",
-  "operatingSystem": "Cross-platform",
-  "applicationCategory": "ScienceApplication",
-  "description": "Galamo is an open-source Python package for galaxy morphology classification, spectral analysis, and image enhancement using SDSS and HST data.",
-  "url": "https://www.galamo.org/",
-  "author": {
-    "@type": "Person",
-    "name": "Jashanpreet Singh Dingra"
-  },
-  "license": "https://opensource.org/licenses/MIT"
-}
-</script>
-
-
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.galamo.org/">
+  <meta property="og:title" content="Galamo – Open-source Galaxy Analysis Toolkit in Python">
+  <meta property="og:description" content="Galamo offers machine learning-based galaxy morphology classification, AGN diagnostics with BPT, and low-light image preprocessing.">
+  <meta property="og:image" content="https://www.galamo.org/images/galamo_main.svg">
+  <meta property="twitter:card" content="summary_large_image">
+  
   <link href="images/o.svg" rel="shortcut icon" type="image/x-icon">
-
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="css/application.min.fc9470159b693cb941044388b9883ba4a7fa62cadc2fe4e0a79a64d728007491.css">
-  <script src="js/modernizr.js"></script>
   
-
-</head>
-<style>
-  body {
-    margin: 0;
-    color: white;
-    padding: 5px 20px;
-    position: relative;
-    background-color: #0a0e1a;
-    z-index: 1;
-  }
-
-  .background-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('https://cdn.eso.org/images/screen/eso1137_hubble_dark.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.5; /* Adjust this value for desired transparency */
-    z-index: -1;
-  }
-</style>
-
-<body>
-<!--
-  <div style="
-  background-color: #000080;
-  color: #ffff00;
-  font-family: 'Lucida Console', Monaco, monospace;
-  padding: 6px 10px;
-  border: 2px inset #fff;
-  box-shadow: 2px 2px 3px #444;
-  margin: 10px auto;
-  width: 90%;
-  max-width: 800px;
-  height: 30px; /* Set fixed height */
-  overflow: hidden;
-  position: relative;
-">
-  <div style="
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    white-space: nowrap;
-    animation: scroll-left 12s linear infinite;
-    font-size: 14px;
-  ">
-    🚧 Website is under construction... Please check back soon! 🚧
-  </div>
-</div>-->
-  <div class="background-overlay"></div>
-
-  <div class="inner">
-    <header>
-<style>
-  .bright-logo {
-    filter: brightness(1.1) !important; /* Try values between 1.2 to 2.5 */
-  }
-</style>
-
-<a id="logo" href="/">
-  <img src="images/galamo_main.svg" width="210" height="46" alt="Galamo Logo" class="bright-logo no-filter">
-</a>
-
-  <span>--an open source python package for galaxy analysis</span>
-  <script type="text/javascript">
-   const taglines = [
-     "fast-version-control",
-     "everything-is-local",
-     "distributed-even-if-your-workflow-isnt",
-     "local-branching-on-the-cheap",
-     "distributed-is-the-new-centralized"
-   ];
-   var tagline = taglines[Math.floor(Math.random() * taglines.length)];
-   document.getElementById('tagline').innerHTML = '--' + tagline;
-  </script>
-
-  
-<!--<div id="search-container" style="display: flex; gap: 10px; align-items: center;">
-  <a href="https://github.com/pyastrolab/galamo" target="_blank">
-    <img src="https://img.favpng.com/13/12/10/github-pages-logo-computer-icons-png-favpng-ew8sjnZfG8RsyhJNBTL2Dw3SR.jpg" alt="GitHub" width="32" height="32">
-  </a>
-  <a href="https://pypi.org/project/galamo/" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/PyPI-Logo-notext.svg" alt="PyPI" width="80" height="28">
-  </a>
-</div>
-
-  
-  <img src="images/dark-mode.svg" id="dark-mode-button">-->
-</header>
-
-  </div> 
-
-  <div>
-  <div class="inner" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
-    <div style="flex: 1; min-width: 300px;">
-      <p>
-        Galamo is an open-source Python package for 
-        <span style="color: rgb(0, 162, 255);">comprehensive galaxy analysis</span>, integrating machine learning and statistical methods. 
-        It provides automated tools for 
-        <span style="color: rgb(0, 162, 255);">morphology classification</span>, 
-        <span style="color: rgb(0, 162, 255);">kinematics</span>, 
-        <span style="color: rgb(0, 162, 255);">photometry</span>, and 
-        <span style="color: rgb(0, 162, 255);">spectral analysis</span> to aid astrophysical research.
-      </p>
-
-      <p>
-        Please remember to 
-        <a href="cite.txt" style="color: rgb(0, 162, 255);">acknowledge and cite</a> the use of Galamo!
-      </p>
-    </div>
-
-    <!--<div class="illustration-wrapper" style="flex-shrink: 0;">
-      <img class="illustration" src="images/o.svg" width="389" height="201" alt="Galamo Illustration">
-    </div>-->
-  </div> 
-</div>
-<style>
-  /* Hide illustration-wrapper on screens smaller than 992px */
-  @media (max-width: 991px) {
-    .illustration-wrapper {
-      display: none;
-    }
-  }
-</style>
-
-
-</style><br>
-    <div id="content-wrapper">
-      <div class="inner">
-        <div id="front-content">
-  <section id="front-navigation">
-    <nav id="front-nav">
-      <ul>
-       <!-- Nav Item for About -->
-<li id="nav-about">
-  <a href="javascript:void(0);" onclick="openModal()">
-    <img src="images/nav-about%402x.png" width="74" height="74">
-    <h3 style="color: rgb(0, 162, 255);">About</h3>
-    <p>Learn about Galamo, its backend language and modules.</p>
-  </a>
-</li>
-
-<!-- Modal -->
-<div id="aboutModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.6);">
-  <div style="background-color:#000000ae; margin:5% auto; padding:30px; border-radius:12px; width:90%; max-width:700px; font-family:Arial, sans-serif; position:relative;">
-    <!-- Close Button -->
-    <span onclick="closeModal()" style="position:absolute; top:50px; right:20px; font-size:30px; font-weight:bold; color:#ff0000; cursor:pointer;">&times;</span>
-
-    <!-- Modal Content -->
-    <h2 style="color:#0077cc; margin-bottom:10px;">About Galamo</h2>
-    <p style="font-size:16px; line-height:1.6; color:#ffffff;">
-      <strong>Galamo</strong> is an open-source Python package designed for comprehensive galaxy analysis. It provides high-level workflows for automated morphological classification, emission-line spectral diagnostics, and low-light image enhancement, 
-      with a focus on data from large sky surveys such as SDSS and HST.
-      Galamo is written in python including its deep learning models. Training was accelerated on an NVIDIA GeForce GTX 1650.
-    </p>
-   <p style="font-size:16px; line-height:1.6; color:#ffffff;">
-  Galamo includes three core modules:
-</p>
-<ul style="padding-left: 20px; color: #ffffff; font-size:16px; line-height:1.6;">
-  <li><code>galaxy_morph</code> for CNN-based classification into 36 detailed galaxy types and simplified spiral–elliptical–merger grouping</li>
-  <li><code>bpt</code> for emission-line diagnostics using the Baldwin–Phillips–Terlevich (BPT) diagram and AGN/star-forming separation</li>
-  <li><code>psr</code> for preprocessing faint galaxy images using classical image enhancement techniques</li>
-</ul>
-
-    <p style="font-size:16px; line-height:1.6; color:#ffffff;">
-      The toolkit is built on Python libraries including Astropy, Scikit-learn, and TensorFlow, and supports both command-line use and importable modules. It includes example notebooks, batch processing support, and compatibility with standard astronomical data formats. Galamo is intended for both research and education, promoting reproducibility and efficiency in extragalactic astronomy.
-    </p>
-    <br>
- <div style="display: flex; align-items: baseline; gap: 0.4em;">
-  <strong style="margin: 0; padding: 0;">Visit:</strong>
-  <a href="http://www.galamo.org/learn.html" style="color:#0080cc; text-decoration:dotted; margin: 0; padding: 0;">http://www.galamo.org/learn.html</a>
-  <span style="margin: 0; padding: 0;">for detailed workflow of each module.</span>
-</div>
-  </div>
-</div>
-
-<!-- Modal JavaScript -->
-<script>
-  function openModal() {
-    document.getElementById("aboutModal").style.display = "block";
-  }
-  function closeModal() {
-    document.getElementById("aboutModal").style.display = "none";
-  }
-  window.onclick = function(event) {
-    const modal = document.getElementById("aboutModal");
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  };
-</script>
-
-        <li id="nav-documentation">
-          <a href="/doc">
-            <img src="images/nav-documentation%402x.png" width="74" height="74">
-            <h3 style="color: rgb(0, 162, 255);">Documentation</h3>
-            <p>Command reference pages, Pro Git book content, videos and other material.</p>
-          </a>
-        </li>
-        <li id="nav-downloads">
-          <a href="https://www.galamo.org/installation.html">
-            <img src="images/nav-downloads%402x.png" width="74" height="74">
-            <h3 style="color: rgb(0, 162, 255);">Installation</h3>
-            <p>Command lines to install galamo for different environments</p>
-          </a>
-        </li>
-        <li id="nav-community">
-          <a href="https://github.com/galamo-org/galamo" target="_blank">
-            <img src="images/nav-community%402x.png" width="74" height="74">
-            <h3 style="color: rgb(0, 162, 255);">Github</h3>
-            <p>Get involved! Bug reporting, mailing list, chat, development and more.</p>
-          </a>
-        </li>
-      </ul>
-    </nav>
-<style>
-  .section {
-    margin: 0;
-    padding: 0 20px;
-  }
-
-  h3 {
-    margin: 0;
-    padding: 0;
-  }
-
-  p {
-    margin: 5px 0 0;
-    padding: 0;
-  }
-</style>
-
-<div class="section">
-  <h3>Institutional Collaboration</h3>
-  <p>
-   Galamo is in its early stages, developed to support the astronomy community, and is already being used by researchers in India. We welcome institutional collaborations to help it grow further.  <a href="mailto:contact@galamo.org"style="color: rgb(0, 162, 255);" target="_blank" >Contact</a></p>
-
-    </div>
-  </section>
-  <section id="front-downloads">
-    <div class="monitor">
-
-  <h4> Latest source Release </h4>
-
-  <span class="version">
-    0.0.9
-  </span>
-
-  <a href="https://raw.github.com/git/git/master/Documentation/RelNotes/2.49.0.adoc">Check What's New!</a>
-  <span class="release-date">
-    (2025-03-14)
-  </span>
-  <span data-mac="2.33.0" data-win="2.49.0" id="installer-version"></span>
-<br>
-<p>Command line for installation</p>
   <style>
-    .code-container {
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    body {
+      margin: 0;
+      color: white;
+      padding: 5px 20px;
       position: relative;
+      background-color: #0a0e1a;
+      z-index: 1;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://cdn.eso.org/images/screen/eso1137_hubble_dark.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    .curved-button {
+      background: linear-gradient(to right, #00008b, #00a2ff);
+      color: white;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s ease;
+      margin-top: 15px;
+    }
+
+    .curved-button:hover {
+      background: linear-gradient(to right, #001a66, #0080cc);
+    }
+    
+    .code-container {
       background-color: #1e1e1e;
       color: #f1f1f1;
       padding: 5px 10px;
@@ -339,13 +89,14 @@
       max-width: 300px;
       font-size: 14px;
       overflow-x: auto;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
     }
 
     .copy-button {
       position: absolute;
       top: 2px;
       right: 2px;
+      background: transparent;
       color: white;
       border: none;
       border-radius: 7px;
@@ -362,119 +113,200 @@
       height: 16px;
       fill: white;
     }
+
+    /* === DEFINITIVE FIX FOR LAYOUT OVERLAP === */
+    .monitor {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto !important;
+        min-height: 180px;
+        padding: 20px !important;
+        margin: 0 auto;
+        text-align: center;
+        position: static !important; /* Force element into the normal flow */
+    }
+
+    #front-downloads > p {
+        text-align: center;
+        position: static !important; /* Force element into the normal flow */
+    }
+
+    #front-downloads .code-container {
+        position: static !important; /* Force element into the normal flow */
+        margin: 5px auto 0 auto; /* Center the block */
+    }
   </style>
-  <div class="code-container">
-    <button id="copy-btn" class="copy-button" onclick="copyToClipboard()">
-      <!-- Copy Icon -->
-      <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M0 0h24v24H0V0z" fill="none"/>
-        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 18H8V7h11v16z"/>
-      </svg>
 
-      <!-- Check Icon -->
-      <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display: none;">
-        <path d="M0 0h24v24H0V0z" fill="none"/>
-        <path d="M9 16.17L4.83 12 3.41 13.41 9 19l12-12-1.41-1.41z"/>
-      </svg>
-    </button>
-
-    <code id="terminal-command">pip install galamo</code>
-
-  </div>
-<br>
+</head>
+<body>
+  
   <script>
+    document.documentElement.dataset.theme = "dark";
+    localStorage.setItem("theme", "dark");
+  </script>
+
+  <div class="background-overlay"></div>
+
+  <div class="inner">
+    <header>
+      <a id="logo" href="/">
+        <img src="images/galamo_main.svg" style="filter: brightness(1);" width="210" height="46" alt="Galamo Logo">
+      </a>
+      <span>--an open source python package for galaxy analysis</span>
+    </header>
+  </div>
+
+  <div class="inner">
+    <p>
+      Galamo is an open-source Python package for <span style="color: rgb(0, 162, 255);">comprehensive galaxy analysis</span>, integrating machine learning and statistical methods. It provides automated tools for <span style="color: rgb(0, 162, 255);">morphology classification</span>, <span style="color: rgb(0, 162, 255);">kinematics</span>, <span style="color: rgb(0, 162, 255);">photometry</span>, and <span style="color: rgb(0, 162, 255);">spectral analysis</span> to aid astrophysical research.
+    </p>
+    <p>Please remember to <a href="cite.txt" style="color: rgb(0, 162, 255);">acknowledge and cite</a> the use of Galamo!</p>
+  </div>
+
+  <div id="content-wrapper">
+    <div class="inner">
+      <div id="front-content">
+        <section id="front-navigation">
+          <nav id="front-nav">
+            <ul>
+              <li id="nav-about"><a href="javascript:void(0);" onclick="openAboutModal()"><img src="images/nav-about%402x.png" width="74" height="74"><h3 style="color: rgb(0, 162, 255);">About</h3><p>Learn about Galamo, its backend language and modules.</p></a></li>
+              <li id="nav-documentation"><a href="/doc"><img src="images/nav-documentation%402x.png" width="74" height="74"><h3 style="color: rgb(0, 162, 255);">Documentation</h3><p>Command reference pages, Pro Git book content, videos and other material.</p></a></li>
+              <li id="nav-downloads"><a href="https://www.galamo.org/installation.html"><img src="images/nav-downloads%402x.png" width="74" height="74"><h3 style="color: rgb(0, 162, 255);">Installation</h3><p>Command lines to install galamo for different environments</p></a></li>
+              <li id="nav-community"><a href="https://github.com/galamo-org/galamo" target="_blank"><img src="images/nav-community%402x.png" width="74" height="74"><h3 style="color: rgb(0, 162, 255);">Github</h3><p>Get involved! Bug reporting, mailing list, chat, development and more.</p></a></li>
+            </ul>
+          </nav>
+          <div>
+            <h3>Institutional Collaboration</h3>
+            <p>Galamo is in its early stages, developed to support the astronomy community, and is already being used by researchers in India. We welcome institutional collaborations to help it grow further. <a href="mailto:contact@galamo.org" style="color: rgb(0, 162, 255);" target="_blank">Contact</a></p>
+          </div>
+        </section>
+
+        <section id="front-downloads">
+          <div class="monitor">
+            <h4> Latest source Release </h4>
+            <span class="version">0.0.9</span>
+            <a href="https://raw.github.com/git/git/master/Documentation/RelNotes/2.49.0.adoc">Check What's New!</a>
+            <span class="release-date">(2025-07-20)</span>
+            <span data-mac="2.33.0" data-win="2.49.0" id="installer-version"></span>
+          </div>
+          <p style="margin-top:15px; margin-bottom: 5px;">Command line for installation</p>
+          <div class="code-container">
+            <button id="copy-btn" class="copy-button" onclick="copyToClipboard()">
+              <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 18H8V7h11v16z"/></svg>
+              <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display: none;"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M9 16.17L4.83 12 3.41 13.41 9 19l12-12-1.41-1.41z"/></svg>
+            </button>
+            <code id="terminal-command">pip install galamo</code>
+          </div>
+          <table style="margin-top: 20px;">
+            <tbody>
+              <tr>
+                <td nowrap="true"><a href="learn.html" style="color: rgb(0, 162, 255);" target="_blank" class="icon gui">Tutorials</a></td>
+                <td nowrap="true"><a href="https://pypi.org/project/galamo/" style="color: rgb(0, 162, 255);" class="icon older-releases">PyPI</a></td>
+              </tr>
+              <tr>
+                <td nowrap="true"><a href="https://groups.google.com/g/galamo-dev/" style="color: rgb(0, 162, 255);" class="icon windows">Mailing List</a></td>
+                <td nowrap="true"><a href="https://github.com/galamo-org/galamo" style="color: rgb(0, 162, 255);" class="icon source">Source Code</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+
+      <section id="companies-projects">
+        <h3>Report bugs and Contribute</h3>
+        <p>If you encounter something you believe to be a mistake, error, or bug, the best way to get it addressed is to report it on the github issue tracker. If you aren't sure if something is a bug or not, or if you don't have a Github account, feel free to ask on one of the forums. If you believe you know how to fix the problem, please consider contributing!</p>
+        <div style="text-align: right;">
+          <button onclick="openContributionModal()" class="curved-button">Contribution Guidelines</button>
+        </div>
+      </section>
+
+      <footer>
+        <div class="sfc-member">
+          <a href="mailto:astrodingra@gmail.com" style="color: #0095ff;">Donate Galamo</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <div id="aboutModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.8);">
+    <div style="background-color:#0a0e1a; border: 1px solid #333; margin:5% auto; padding:30px; border-radius:12px; width:90%; max-width:700px; position:relative;">
+      <span onclick="closeAboutModal()" style="position:absolute; top:15px; right:20px; font-size:30px; font-weight:bold; color:#ff0000; cursor:pointer;">&times;</span>
+      <h2 style="color:#00a2ff; margin-bottom:10px;">About Galamo</h2>
+      <p style="font-size:16px; line-height:1.6; color:#ffffff;">
+        <strong>Galamo</strong> is an open-source Python package designed for comprehensive galaxy analysis. It leverages the power of modern machine learning and statistical methods to provide astrophysicists and researchers with a robust toolkit for their work.
+      </p>
+      <h3 style="color:#00a2ff; margin-top:20px; margin-bottom:10px;">Core Features:</h3>
+      <ul style="color:#ffffff; list-style-type:disc; padding-left:20px; line-height:1.6;">
+        <li><strong>Morphology Classification:</strong> Automated classification of galaxy morphologies using deep learning models.</li>
+        <li><strong>Spectral Analysis:</strong> Tools for spectral diagnostics, including BPT diagrams for AGN detection.</li>
+        <li><strong>Data Integration:</strong> Seamlessly works with data from surveys like the Sloan Digital Sky Survey (SDSS) and the Hubble Space Telescope (HST).</li>
+        <li><strong>Image Enhancement:</strong> Includes utilities for preprocessing and enhancing low-light astronomical images.</li>
+      </ul>
+      <h3 style="color:#00a2ff; margin-top:20px; margin-bottom:10px;">Technology Stack:</h3>
+      <p style="font-size:16px; line-height:1.6; color:#ffffff;">
+        Galamo is built entirely in <strong>Python</strong>, relying on a foundation of well-established scientific computing libraries such as NumPy, SciPy, Astropy, and scikit-learn. For its deep learning capabilities, it utilizes TensorFlow and Keras.
+      </p>
+    </div>
+  </div>
+  
+  <div id="contributionModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 p-4">
+    <div class="bg-[#1a202c] border border-gray-700 max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 rounded-lg shadow-2xl relative">
+      <button onclick="closeContributionModal()" class="absolute top-4 right-4 bg-gray-800 w-8 h-8 rounded-full text-gray-400 hover:text-white hover:bg-gray-700 transition-all">&times;</button>
+      <h2 class="text-2xl font-bold mb-4 text-white">Contributing to Galamo</h2>
+      <p class="text-gray-400 mb-4 leading-relaxed">
+        Thank you for your interest in contributing to Galamo! We welcome contributions from everyone. By participating in this project, you agree to abide by our code of conduct.
+      </p>
+      <h3 class="text-xl font-semibold mb-2 text-white">Ways to Contribute</h3>
+      <ul class="list-disc list-inside text-gray-400 mb-4 space-y-2">
+        <li><strong>Reporting Bugs:</strong> If you find a bug, please report it on our <a href="https://github.com/galamo-org/galamo/issues" target="_blank" class="text-blue-400 hover:underline">GitHub Issues</a> page. Include as much detail as possible, such as your operating system, Python version, Galamo version, and the steps to reproduce the error.</li>
+        <li><strong>Suggesting Enhancements:</strong> Have an idea for a new feature or an improvement to an existing one? Open an issue to start a discussion.</li>
+        <li><strong>Pull Requests:</strong> We welcome pull requests for bug fixes and new features. Please follow the development workflow:
+          <ol class="list-decimal list-inside pl-6 mt-2">
+            <li>Fork the repository on GitHub.</li>
+            <li>Create a new branch for your feature or bug fix.</li>
+            <li>Make your changes and add tests for them.</li>
+            <li>Ensure your code follows the project's coding style.</li>
+            <li>Submit a pull request with a clear description of your changes.</li>
+          </ol>
+        </li>
+      </ul>
+      <h3 class="text-xl font-semibold mb-2 text-white">Getting Started</h3>
+      <p class="text-gray-400 leading-relaxed">
+        If you are new to the project, a good place to start is by looking for issues tagged with "good first issue". Feel free to ask for help or clarification on our mailing list or the GitHub issue tracker.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const aboutModal = document.getElementById("aboutModal");
+    function openAboutModal() { if(aboutModal) aboutModal.style.display = "block"; }
+    function closeAboutModal() { if(aboutModal) aboutModal.style.display = "none"; }
+
+    const contributionModal = document.getElementById("contributionModal");
+    function openContributionModal() { if(contributionModal) { contributionModal.classList.remove("hidden"); contributionModal.classList.add("flex"); } }
+    function closeContributionModal() { if(contributionModal) { contributionModal.classList.add("hidden"); contributionModal.classList.remove("flex"); } }
+
     function copyToClipboard() {
       const text = document.getElementById("terminal-command").textContent;
       const copyIcon = document.getElementById("copy-icon");
       const checkIcon = document.getElementById("check-icon");
-
       navigator.clipboard.writeText(text).then(() => {
-        // Show check icon, hide copy
         copyIcon.style.display = "none";
         checkIcon.style.display = "inline";
-
-        // Revert back after 1.5s
         setTimeout(() => {
           checkIcon.style.display = "none";
           copyIcon.style.display = "inline";
         }, 1500);
       });
     }
+
+    window.onclick = function(event) {
+      if (event.target == aboutModal) closeAboutModal();
+      if (event.target == contributionModal) closeContributionModal();
+    };
   </script>
-</div>
 
-    <table>
-      <tbody><tr>
-        <td nowrap="true"><a href="learn.html"  style="color: rgb(0, 162, 255);" target="_blank" class="icon gui" >Tutorials</a></td>
-        <td nowrap="true"><a href="https://pypi.org/project/galamo/" style="color: rgb(0, 162, 255);" class="icon older-releases">PyPI</a></td>
-      </tr>
-      <tr>
-        <td nowrap="true"><a href="https://groups.google.com/g/galamo-dev/"  style="color: rgb(0, 162, 255);" class="icon windows">Mailing List</a></td>
-        <td nowrap="true"><a href="https://github.com/galamo-org/galamo" style="color: rgb(0, 162, 255);" class="icon source">Source Code</a></td>
-      </tr>
-    </tbody></table>
-</section>
-</div>
-
-<section id="companies-projects" style="--seed: 423;">
-  <h3 class="text-center">Report bugs and Contribute</h3>
-<p>If you encounter something you believe to be a mistake, error, or bug, the best way to get it addressed is to report it on the github issue tracker. If you aren't sure if something is a bug or not, or if you don't have a Github account, feel free to ask on one of the forums. If you believe you know how to fix the problem, please consider contributing!</p>
-<p></p>
-<style>
-  .button-wrapper {
-    text-align: right; /* Push button to the right */
-    margin-top: 10px;
-  }
-
-  .curved-button {
-    background: linear-gradient(to right, #00008b, #00a2ff); /* dark blue to blue */
-    color: white;
-    padding: 6px 16px;
-    border: none;
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: background 0.3s ease;
-  }
-
-  .curved-button:hover {
-    background: linear-gradient(to right, #001a66, #0080cc);
-  }
-</style>
-
-<div class="button-wrapper">
-  <a href="#contribution-guidelines" class="curved-button">Contribution Guidelines</a>
-</div>
-
-  <script type="text/javascript">
-    document.getElementById("companies-projects").style.setProperty("--seed", Math.floor(Math.random() * 1000));
-  </script>
-</section>
-
-        <footer>
-  <div class="sfc-member">
-    <a href="mailto:astrodingra@gmail.com" style="color: #0095ff;">Donate Galamo</a>
-  </div>
-</footer>
-<a href="#top" class="no-js scrollToTop" id="scrollToTop" data-label="Scroll to top">
-  <img src="images/chevron-up%402x.png" width="20" height="20" alt="scroll-to-top">
-</a>
-
-<script src="js/jquery-1.7.1.min.js"></script>
-<script src="js/jquery-ui-1.8.18.custom.min.js"></script>
-<script src="js/jquery.defaultvalue.js"></script>
-<script src="js/session.min.js"></script>
-
-<script src="js/application.min.cfacff40fb0acbb0c567de3ce6faf87b771cd5513c501b88854df81565a97998.js"></script>
-
-      </div> 
-    </div> 
-  
-
-
-
-
-</body></html>
+</body>
+</html>
