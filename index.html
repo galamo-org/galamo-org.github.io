@@ -46,7 +46,7 @@
 </style>
 
 <body>
-
+<!--
   <div style="
   background-color: #000080;
   color: #ffff00;
@@ -71,7 +71,7 @@
   ">
     🚧 Website is under construction... Please check back soon! 🚧
   </div>
-</div>
+</div>-->
   <div class="background-overlay"></div>
 
   <div class="inner">
@@ -156,13 +156,65 @@
   <section id="front-navigation">
     <nav id="front-nav">
       <ul>
-        <li id="nav-about">
-          <a href="learn.html" target="_blank">
-            <img src="images/nav-about%402x.png" width="74" height="74">
-            <h3 style="color: rgb(0, 162, 255);">About</h3>
-            <p>Learn about Galamo, its backend language and modules.</p>
-          </a>
-        </li>
+       <!-- Nav Item for About -->
+<li id="nav-about">
+  <a href="javascript:void(0);" onclick="openModal()">
+    <img src="images/nav-about%402x.png" width="74" height="74">
+    <h3 style="color: rgb(0, 162, 255);">About</h3>
+    <p>Learn about Galamo, its backend language and modules.</p>
+  </a>
+</li>
+
+<!-- Modal -->
+<div id="aboutModal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.6);">
+  <div style="background-color:#000000ae; margin:5% auto; padding:30px; border-radius:12px; width:90%; max-width:700px; font-family:Arial, sans-serif; position:relative;">
+    <!-- Close Button -->
+    <span onclick="closeModal()" style="position:absolute; top:50px; right:20px; font-size:30px; font-weight:bold; color:#ff0000; cursor:pointer;">&times;</span>
+
+    <!-- Modal Content -->
+    <h2 style="color:#0077cc; margin-bottom:10px;">About Galamo</h2>
+    <p style="font-size:16px; line-height:1.6; color:#ffffff;">
+      <strong>Galamo</strong> is an open-source Python package designed for comprehensive galaxy analysis. It provides high-level workflows for automated morphological classification, emission-line spectral diagnostics, and low-light image enhancement, 
+      with a focus on data from large sky surveys such as SDSS and HST.
+      Galamo is written in python including its deep learning models. Training was accelerated on an NVIDIA GeForce GTX 1650.
+    </p>
+   <p style="font-size:16px; line-height:1.6; color:#ffffff;">
+  Galamo includes three core modules:
+</p>
+<ul style="padding-left: 20px; color: #ffffff; font-size:16px; line-height:1.6;">
+  <li><code>galaxy_morph</code> for CNN-based classification into 36 detailed galaxy types and simplified spiral–elliptical–merger grouping</li>
+  <li><code>bpt</code> for emission-line diagnostics using the Baldwin–Phillips–Terlevich (BPT) diagram and AGN/star-forming separation</li>
+  <li><code>psr</code> for preprocessing faint galaxy images using classical image enhancement techniques</li>
+</ul>
+
+    <p style="font-size:16px; line-height:1.6; color:#ffffff;">
+      The toolkit is built on Python libraries including Astropy, Scikit-learn, and TensorFlow, and supports both command-line use and importable modules. It includes example notebooks, batch processing support, and compatibility with standard astronomical data formats. Galamo is intended for both research and education, promoting reproducibility and efficiency in extragalactic astronomy.
+    </p>
+    <br>
+ <div style="display: flex; align-items: baseline; gap: 0.4em;">
+  <strong style="margin: 0; padding: 0;">Visit:</strong>
+  <a href="http://www.galamo.org/learn.html" style="color:#0080cc; text-decoration:dotted; margin: 0; padding: 0;">http://www.galamo.org/learn.html</a>
+  <span style="margin: 0; padding: 0;">for detailed workflow of each module.</span>
+</div>
+  </div>
+</div>
+
+<!-- Modal JavaScript -->
+<script>
+  function openModal() {
+    document.getElementById("aboutModal").style.display = "block";
+  }
+  function closeModal() {
+    document.getElementById("aboutModal").style.display = "none";
+  }
+  window.onclick = function(event) {
+    const modal = document.getElementById("aboutModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>
+
         <li id="nav-documentation">
           <a href="/doc">
             <img src="images/nav-documentation%402x.png" width="74" height="74">
@@ -171,7 +223,7 @@
           </a>
         </li>
         <li id="nav-downloads">
-          <a href="/downloads">
+          <a href="https://www.galamo.org/installation.html">
             <img src="images/nav-downloads%402x.png" width="74" height="74">
             <h3 style="color: rgb(0, 162, 255);">Installation</h3>
             <p>Command lines to install galamo for different environments</p>
@@ -216,7 +268,7 @@
   <h4> Latest source Release </h4>
 
   <span class="version">
-    0.0.8
+    0.0.9
   </span>
 
   <a href="https://raw.github.com/git/git/master/Documentation/RelNotes/2.49.0.adoc">Check What's New!</a>
@@ -308,7 +360,7 @@
         <td nowrap="true"><a href="https://pypi.org/project/galamo/" style="color: rgb(0, 162, 255);" class="icon older-releases">PyPI</a></td>
       </tr>
       <tr>
-        <td nowrap="true"><a href="/downloads/win"  style="color: rgb(0, 162, 255);" class="icon windows" id="alt-link">Windows Build</a></td>
+        <td nowrap="true"><a href="https://groups.google.com/g/galamo-dev/"  style="color: rgb(0, 162, 255);" class="icon windows" id="alt-link">Mailing List</a></td>
         <td nowrap="true"><a href="https://github.com/galamo-org/galamo" style="color: rgb(0, 162, 255);" class="icon source">Source Code</a></td>
       </tr>
     </tbody></table>
@@ -355,7 +407,7 @@
 
         <footer>
   <div class="sfc-member">
-    Galamo is a member of <a href="/sfc">Software Freedom Conservancy</a>
+    <a href="mailto:astrodingra@gmail.com" style="color: #0095ff;">Donate Galamo</a>
   </div>
 </footer>
 <a href="#top" class="no-js scrollToTop" id="scrollToTop" data-label="Scroll to top">
