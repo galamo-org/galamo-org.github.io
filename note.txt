@@ -46,4 +46,4 @@ PyPI:   https://pypi.org/project/galamo/
 License
 -------
 
-MIT License. See LICENSE for details.
+BSD License. See LICENSE for details.
