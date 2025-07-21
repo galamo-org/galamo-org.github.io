@@ -1,0 +1,49 @@
+Galamo v0.0.9 Release Notes
+===========================
+
+This is the first public release of the Galamo package. It includes stable implementations of three core modules for galaxy morphology classification, emission line diagnostics, and image enhancement. The package is intended for use in research workflows involving SDSS and HST datasets.
+
+Features
+--------
+
+* galaxy_morph: CNN-based and decision-tree-based classification of galaxies
+  - Supports 37 Galaxy Zoo classes and simplified 3-class mode
+  - CNN trained on Galaxy Zoo Challenge dataset (accuracy: 85.17%)
+  - Decision tree model mimics Galaxy Zoo logic structure
+
+* bpt: Emission line diagnostic module
+  - Computes BPT classification using [O III]/Hβ vs [N II]/Hα
+  - Implements classification boundaries from Kauffmann+2003 and Kewley+2001
+  - Accepts both manual flux input and SDSS automatic extraction
+  - Produces diagnostic plots with labeling
+
+* psr: Low-light astronomical image enhancer
+  - Denoising using Fast Non-Local Means (OpenCV)
+  - Contrast enhancement via CLAHE
+  - Gamma correction and sharpening applied in postprocessing
+
+Other Notes
+-----------
+
+* CLI and importable module interface included
+* Example notebooks provided
+* Output formats: CSV, FITS, PNG, PDF
+* Compatible with Python 3.8+
+* Dependencies: tensorflow, astropy, numpy, matplotlib, scikit-learn, astroquery, opencv-python
+
+Cite As
+-------
+
+Dingra, J. S., & Singh, V. (2025). Galamo: An open source python package for comprehensive galaxy analysis. Guru Nanak Dev University.
+
+[Publication Process is going on.]
+-----
+
+Source: https://github.com/galamo-org/galamo  
+Docs:   https://galamo.org  
+PyPI:   https://pypi.org/project/galamo/
+
+License
+-------
+
+MIT License. See LICENSE for details.
