@@ -1,4 +1,4 @@
-Galamo v0.0.9 Release Notes
+Galamo v1.0.0 Release Notes
 ===========================
 
 This is the first public release of the Galamo package. It includes stable implementations of three core modules for galaxy morphology classification, emission line diagnostics, and image enhancement. The package is intended for use in research workflows involving SDSS and HST datasets.
