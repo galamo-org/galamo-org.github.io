@@ -7,7 +7,7 @@ Features
 --------
 
 * galaxy_morph: CNN-based and decision-tree-based classification of galaxies
-  - Supports 37 Galaxy Zoo classes and simplified 3-class mode
+  - Supports 37 Galaxy Zoo classes and detailed 10 morphology predictions
   - CNN trained on Galaxy Zoo Challenge dataset (accuracy: 85.17%)
   - Decision tree model mimics Galaxy Zoo logic structure
 
