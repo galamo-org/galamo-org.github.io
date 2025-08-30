@@ -81,7 +81,7 @@
           <hr class="border-gray-700 my-6">
 
           <h3 id="bug-reports" class="text-xl font-semibold mt-6 mb-2 text-white">Bug Reports</h3>
-          <p class="text-gray-400 mb-4">To report a bug, please open an issue on the <a href="https://github.com/galamo-org/galamo/issues" target="_blank" rel="noopener noreferrer" class="blue-link">GitHub Issues page</a> with the following information:</p>
+          <p class="text-gray-400 mb-4">To report a bug, please open an issue on the <a href="https://github.com/galamo-org/galamo/issues" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300">GitHub Issues page</a> with the following information:</p>
           <ul class="list-disc list-inside text-gray-400 space-y-2">
               <li>A clear and descriptive title</li>
               <li>Steps to reproduce the issue</li>
@@ -188,7 +188,8 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
             <div id="tutorialCount" class="text-gray-400 mb-4">Showing <span id="visibleCount" class="font-semibold text-white">0</span> of <span id="totalCount" class="font-semibold text-white">0</span> tutorials</div>
             
             <div id="tutorialsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                </div>
+                <!-- Tutorial cards will be injected here by JavaScript -->
+            </div>
              <div id="noResults" class="hidden text-center py-16">
                 <h3 class="text-2xl font-semibold text-white">No Tutorials Found</h3>
                 <p class="text-gray-400 mt-2">Try adjusting your search or filter criteria.</p>
@@ -196,7 +197,7 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
         </section>
     </main>
     
-<footer class="text-center mt-12 text-gray-500">
+<footer class="text-center mt-12 text-gray-500 p-4">
              <p>Visit the official website at <a href="https://www.galamo.org" target="_blank" rel="noopener noreferrer" class="font-medium text-blue-400 hover:text-blue-300">www.galamo.org</a></p>
             <p>Find Galamo on 
                 <a href="https://pypi.org/project/galamo/" target="_blank" rel="noopener noreferrer" class="font-medium text-blue-400 hover:text-blue-300">PyPI</a> & 
@@ -207,7 +208,7 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
     <script>
         // --- DATA ---
         const tutorials = [
-             {
+            {
                 id: 1, title: "BPT Diagram Analysis",
                 description: "Classify galaxies into AGN, composite, or star-forming based on the BPT diagram using key emission line ratios.",
                 format: "notebook", package: "galamo-core", difficulty: "advanced",
@@ -219,7 +220,7 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
                 description: "Use a CNN to classify galaxy images into spiral, elliptical, and merger categories based on photometric data.",
                 format: "notebook", package: "galamo-core", difficulty: "advanced",
                 author: "J. S. Dingra", task: "modeling", science: "cosmology",
-                dateAdded: "2025-05-20", url: "#", ipynb: ""
+                dateAdded: "2025-05-20", url: "https://www.galamo.org/tutorials/html/galaxy_morph.html", ipynb: "https://www.galamo.org/tutorials/galaxy_morph/galaxy_morph.ipynb"
             },
             {
                 id: 3, title: "Enhancing Low-Light Images",
@@ -227,7 +228,7 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
                 format: "notebook", package: "galamo-vis", difficulty: "intermediate",
                 author: "J. S. Dingra", task: "visualization", science: "planetary",
                 dateAdded: "2025-06-10", url: "#", ipynb: ""
-            },
+            }
         ];
 
         // --- DOM ELEMENTS ---
@@ -281,23 +282,24 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
                     </div>
                     <div>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-2.5 py-1 rounded-full">${tutorial.difficulty}</span>
-                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-2.5 py-1 rounded-full">${tutorial.task}</span>
+                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-2.5 py-1 rounded-full capitalize">${tutorial.difficulty}</span>
+                            <span class="bg-gray-700 text-gray-300 text-xs font-medium px-2.5 py-1 rounded-full capitalize">${tutorial.task.replace('-', ' ')}</span>
                         </div>
                         <div class="border-t border-gray-700 pt-4 flex justify-between items-center">
                             <div class="text-sm text-gray-500">
                                 <span>${tutorial.author}</span><span class="mx-1">·</span><span>${formattedDate}</span>
                             </div>
                              <div class="flex items-center space-x-2">
-                                ${tutorial.ipynb ? `<a href="${tutorial.ipynb}" download title="Download Notebook" class="text-gray-400 hover:text-white"><i data-feather="download" class="w-5 h-5"></i></a>` : ''}
-                                <a href="${tutorial.url}" title="View Tutorial" class="bg-cyan-500 hover:bg-cyan-400 text-gray-900 font-bold py-1.5 px-3 rounded-lg text-sm flex items-center space-x-1.5">
-                                    <span>View</span><i data-feather="arrow-right" class="w-4 h-4"></i>
-                                </a>
-                            </div>
+                                 ${tutorial.ipynb ? `<a href="${tutorial.ipynb}" download title="Download Notebook" class="text-gray-400 hover:text-white"><i data-feather="download" class="w-5 h-5"></i></a>` : ''}
+                                 <a href="${tutorial.url}" title="View Tutorial" class="bg-cyan-500 hover:bg-cyan-400 text-gray-900 font-bold py-1.5 px-3 rounded-lg text-sm flex items-center space-x-1.5">
+                                     <span>View</span><i data-feather="arrow-right" class="w-4 h-4"></i>
+                                 </a>
+                             </div>
                         </div>
                     </div>`;
                 tutorialsGrid.appendChild(card);
             });
+            feather.replace(); // Re-initialize Feather icons after injecting new HTML
             visibleCount.textContent = tutorialsToRender.length;
         }
         
@@ -365,7 +367,6 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
 
         // --- INITIALIZATION ---
         document.addEventListener('DOMContentLoaded', () => {
-            feather.replace();
             renderTutorials(tutorials);
             updateStructuredData(); // Generate schema on page load
             totalCount.textContent = tutorials.length;
@@ -378,35 +379,16 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
     </script>
      <script>
     // Helper for modals
-    const aboutModal = document.getElementById("aboutModal");
     const contributionModal = document.getElementById("contributionModal");
     
-    function openAboutModal() { aboutModal.classList.remove("hidden"); aboutModal.classList.add("flex"); }
-    function closeAboutModal() { aboutModal.classList.add("hidden"); aboutModal.classList.remove("flex"); }
     function openContributionModal() { contributionModal.classList.remove("hidden"); contributionModal.classList.add("flex"); }
     function closeContributionModal() { contributionModal.classList.add("hidden"); contributionModal.classList.remove("flex"); }
 
-    // Copy to clipboard function
-    function copyToClipboard() {
-      const text = document.getElementById("terminal-command").textContent;
-      const copyIcon = document.getElementById("copy-icon");
-      const checkIcon = document.getElementById("check-icon");
-      
-      navigator.clipboard.writeText(text).then(() => {
-        copyIcon.classList.add("hidden");
-        checkIcon.classList.remove("hidden");
-        setTimeout(() => {
-          checkIcon.classList.add("hidden");
-          copyIcon.classList.remove("hidden");
-        }, 1500);
-      });
-    }
-
     // Close modals when clicking outside of them
     window.onclick = function(event) {
-      if (event.target == aboutModal) closeAboutModal();
       if (event.target == contributionModal) closeContributionModal();
     };
   </script>
 </body>
 </html>
+
