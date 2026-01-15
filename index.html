@@ -47,30 +47,16 @@
     .blue-link:hover {
         text-decoration: underline;
     }
-
-    /* Custom Animation for Marquee */
-    @keyframes marquee {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-    .animate-marquee {
-      display: inline-block;
-      white-space: nowrap;
-      animation: marquee 25s linear infinite;
-    }
-    .animate-marquee:hover {
-      animation-play-state: paused;
-    }
   </style>
 </head>
 
 <body class="text-white relative z-10">
   
-  <div class="w-full bg-gradient-to-r from-blue-900 via-cyan-900 to-blue-900 border-b border-cyan-500/30 overflow-hidden relative z-50 h-10 flex items-center">
-    <div class="animate-marquee w-full px-4 text-sm font-medium text-cyan-100">
-      <span class="mr-4 text-cyan-300 font-bold">NEW:</span> 
+  <div class="w-full bg-gradient-to-r from-blue-900 via-cyan-900 to-blue-900 border-b border-cyan-500/30 relative z-50 py-3 flex items-center justify-center text-center">
+    <div class="px-4 text-sm font-medium text-cyan-100">
+      <span class="text-cyan-300 font-bold uppercase tracking-wider mr-2">New:</span> 
       A new model for Galamo is available trained on the DeCaLS Survey! Note: It is not implemented in the Python package yet, but you can 
-      <a href="YOUR_DOWNLOAD_LINK_HERE" class="underline text-white hover:text-cyan-300 font-bold">download it using this link</a>.
+      <a href="YOUR_DOWNLOAD_LINK_HERE" class="underline text-white hover:text-cyan-300 font-bold ml-1">download it using this link</a>.
     </div>
   </div>
   <div class="p-5">
