@@ -19,17 +19,17 @@
   <meta property="og:description" content="Galamo offers machine learning-based galaxy morphology classification, AGN diagnostics with BPT, and low-light image preprocessing.">
   <meta property="og:image" content="https://www.galamo.org/images/galamo_main.svg">
   <meta property="twitter:card" content="summary_large_image">
-  
+   
   <link href="images/o.svg" rel="shortcut icon" type="image/x-icon">
-  
+   
   <script src="https://cdn.tailwindcss.com"></script>
-  
+   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
+   
   <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  
+   
   <style>
     /* Base styles using a custom font */
     html {
@@ -47,14 +47,37 @@
     .blue-link:hover {
         text-decoration: underline;
     }
+
+    /* Custom Animation for Marquee */
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .animate-marquee {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquee 25s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
   </style>
 </head>
 
-<body class="text-white relative z-10 p-5">
+<body class="text-white relative z-10">
+  
+  <div class="w-full bg-gradient-to-r from-blue-900 via-cyan-900 to-blue-900 border-b border-cyan-500/30 overflow-hidden relative z-50 h-10 flex items-center">
+    <div class="animate-marquee w-full px-4 text-sm font-medium text-cyan-100">
+      <span class="mr-4 text-cyan-300 font-bold">NEW:</span> 
+      A new model for Galamo is available trained on the DeCaLS Survey! Note: It is not implemented in the Python package yet, but you can 
+      <a href="YOUR_DOWNLOAD_LINK_HERE" class="underline text-white hover:text-cyan-300 font-bold">download it using this link</a>.
+    </div>
+  </div>
+  <div class="p-5">
   <div class="fixed inset-0 bg-cover bg-center opacity-50 z-[-1]" style="background-image: url('https://cdn.eso.org/images/screen/eso1137_hubble_dark.jpg');"></div>
 
   <div class="container mx-auto max-w-5xl">
-    <header class="flex items-center space-x-4 mb-8">
+    <header class="flex items-center space-x-4 mb-8 mt-4">
       <a id="logo" href="/">
         <img src="images/galamo_main.svg" width="210" height="46" alt="Galamo Logo">
       </a>
@@ -67,7 +90,7 @@
           Galamo is an open-source Python package for <span class="text-cyan-400">comprehensive galaxy analysis</span>, integrating machine learning and statistical methods. It provides automated tools for <span class="text-cyan-400">morphology classification</span>, <span class="text-cyan-400">kinematics</span>, <span class="text-cyan-400">photometry</span>, and <span class="text-cyan-400">spectral analysis</span> to aid astrophysical research.
         </p>
         <p>Please remember to <a href="cite.txt" class="blue-link">acknowledge and cite</a> the use of Galamo!</p>
-        
+         
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -80,7 +103,7 @@
                 </p>
                 
             </button>
-            
+             
             <a href="docs.html" class="block p-4 bg-gray-800/50 rounded-lg hover:bg-gray-700/70 transition">
               <img src="images/nav-documentation%402x.png" width="74" height="74" class="mx-auto mb-2" alt="Documentation icon">
               <h3 class="text-cyan-400 text-xl font-semibold">Documentation</h3>
@@ -104,28 +127,23 @@
         </div>
 
         <div class="text-center">
-            <!-- GitHub Stats Container -->
             <div class="mb-4">
               <a href="https://github.com/galamo-org/galamo" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-gray-800/60 border border-gray-700 text-white text-sm px-4 py-2 rounded-lg hover:bg-gray-700/80 transition w-full max-w-xs mx-auto">
-                  <!-- GitHub Icon -->
                   <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg>
-                  
+                   
                   <div class="flex items-center ml-4">
-                      <!-- Fork Icon -->
                       <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path></svg>
                       <span class="font-semibold ml-1" id="github-forks">...</span>
                   </div>
 
                   <span class="text-gray-600 mx-2">|</span>
-                  
+                   
                   <div class="flex items-center">
-                      <!-- Star Icon -->
                       <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
                       <span class="font-semibold ml-1" id="github-stars">...</span>
                   </div>
               </a>
             </div>
-            <!-- Version Container -->
             <div class="bg-teal-900/50 border border-teal-700 p-6 rounded-lg">
                 <h4 class="text-lg text-gray-300">Latest source Release</h4>
                 <div class="text-5xl font-bold my-2">1.1.2</div>
@@ -149,7 +167,7 @@
             </div>
         </div>
       </div>
-      
+       
       <section class="mt-12 p-6 bg-gray-800/50 rounded-lg">
         <h3 class="text-xl font-bold">Report Bugs and Contribute</h3>
         <p class="text-gray-400 mt-2">If you encounter something you believe to be a mistake, error, or bug, the best way to get it addressed is to report it on the github issue tracker. If you aren't sure if something is a bug or not, or if you don't have a Github account, feel free to ask on one of the forums. If you believe you know how to fix the problem, please consider contributing!</p>
@@ -165,7 +183,10 @@
       </footer>
 
     </main>
-  </div> <div id="aboutModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 p-4">
+  </div>
+  </div> 
+
+  <div id="aboutModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 p-4">
     <div class="bg-[#1a202c] border border-gray-700 max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 rounded-lg shadow-2xl relative">
       <button onclick="closeAboutModal()" class="absolute top-4 right-4 bg-gray-800 w-8 h-8 rounded-full text-gray-400 hover:text-white hover:bg-gray-700 transition-all">&times;</button>
       <h2 class="text-2xl font-bold mb-4 text-white">About Galamo</h2>
@@ -191,26 +212,26 @@
           <strong>psr:</strong> Enhances the quality and clarity of low-light astronomical images using a computer vision pipeline (denoising, contrast enhancement, gamma correction), serving as an effective preprocessing step before classification.
         </li>
       </ul>
-      
+       
       <h3 class="text-xl font-semibold mt-6 mb-2 text-white">Authors & Affiliation</h3>
       <p class="text-gray-400 leading-relaxed">
         Galamo was developed by <strong>Jashanpreet Singh Dingra</strong> and <strong>Vikramjeet Singh</strong> at Guru Nanak Dev University, Amritsar, India.
         Galamo was encouraged by group of coding enthusiast and we can not forget to mention them all @ <a href="team.html" style="color: #00a2ff;">Team/Supporters</a>.
       </p>
-      
+       
       <h3 class="text-xl font-semibold mt-6 mb-2 text-white">Dependencies & Availability</h3>
       <p class="text-gray-400 leading-relaxed">
         The package is written in Python 3.8+ and depends on Astropy, NumPy, Matplotlib, TensorFlow, Astroquery, and Scikit-learn. Galamo is publicly available on <a href="https://github.com/galamo-org/galamo" target="_blank" rel="noopener noreferrer" class="blue-link">GitHub</a> and <a href="https://pypi.org/project/galamo/" target="_blank" rel="noopener noreferrer" class="blue-link">PyPI</a>.
       </p>
     </div>
   </div>
-  
+   
   <div id="contributionModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 p-4">
       <div class="bg-[#1a202c] border border-gray-700 max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 rounded-lg shadow-2xl relative">
           <button onclick="closeContributionModal()" class="absolute top-4 right-4 bg-gray-800 w-8 h-8 rounded-full text-gray-400 hover:text-white hover:bg-gamma-700 transition-all">&times;</button>
           <h2 class="text-2xl font-bold mb-4 text-white">Contributing to Galamo</h2>
           <p class="text-gray-400 leading-relaxed mb-4">Thank you for your interest in contributing to <strong>Galamo</strong>. This document outlines the guidelines and procedures for contributing. We welcome contributions that improve the software, documentation, or overall usability of the package.</p>
-          
+           
           <hr class="border-gray-700 my-6">
 
           <h3 id="types-of-contributions" class="text-xl font-semibold mt-6 mb-2 text-white">Types of Contributions</h3>
@@ -270,7 +291,7 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
               <li>Open a pull request (PR) to the `main` branch of the `galamo-org/galamo` repository.</li>
               <li>In the PR description, explain your changes and link to any relevant issues.</li>
           </ol>
-          
+           
           <hr class="border-gray-700 my-6">
 
           <h3 id="code-of-conduct" class="text-xl font-semibold mt-6 mb-2 text-white">Code of Conduct</h3>
@@ -283,7 +304,7 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
     // Helper for modals
     const aboutModal = document.getElementById("aboutModal");
     const contributionModal = document.getElementById("contributionModal");
-    
+     
     function openAboutModal() { aboutModal.classList.remove("hidden"); aboutModal.classList.add("flex"); }
     function closeAboutModal() { aboutModal.classList.add("hidden"); aboutModal.classList.remove("flex"); }
     function openContributionModal() { contributionModal.classList.remove("hidden"); contributionModal.classList.add("flex"); }
@@ -294,7 +315,7 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
       const text = document.getElementById("terminal-command").textContent;
       const copyIcon = document.getElementById("copy-icon");
       const checkIcon = document.getElementById("check-icon");
-      
+       
       navigator.clipboard.writeText(text).then(() => {
         copyIcon.classList.add("hidden");
         checkIcon.classList.remove("hidden");
@@ -330,9 +351,8 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`</code></pre>
         document.getElementById('github-forks').textContent = 'N/A';
       }
     }
-    
+     
     document.addEventListener('DOMContentLoaded', fetchGitHubStats);
   </script>
 </body>
 </html>
-
